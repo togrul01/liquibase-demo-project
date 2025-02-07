@@ -1,0 +1,10 @@
+databaseChangeLog:
+  - changeSet:
+      id: Change username column type to varchar(32)
+      author: Togrul Jafarov
+      changes:
+        - modifyDataType:
+            tableName: users
+            columnName: userName
+            newDataType: varchar(256)
+

@@ -1,0 +1,12 @@
+package org.company.springliquibase.enums;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+@AllArgsConstructor
+@Getter
+public enum ExceptionMessage {
+    UNEXPECTED_ERROR("An unexpected error occurred. Please try again later.");
+
+    private final String message;
+    }

@@ -1,0 +1,10 @@
+databaseChangeLog:
+  - changeSet:
+      id: Rename username to userName
+      author: Togrul Jafarov
+      changes:
+        - renameColumn:
+            tableName: users
+            oldColumnName: username
+            newColumnName: userName
+            columnDataType: varchar(256)
