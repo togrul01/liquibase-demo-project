@@ -13,5 +13,6 @@ public class UserResponse {
     private Long id;
     private String userName;
     private Integer age;
+    private String birthPlace;
 }
 

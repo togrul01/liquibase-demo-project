@@ -11,5 +11,7 @@ public class UserRequest {
     private Long id;
     private String userName;
     private Integer age;
+    private String birthPlace;
+
 }
 

@@ -5,9 +5,18 @@ import lombok.extern.slf4j.Slf4j;
 import org.company.springliquibase.dao.UserRepository;
 import org.company.springliquibase.exception.UserNotFoundException;
 import org.company.springliquibase.mapper.UserMapper;
+import org.company.springliquibase.model.PageableUserResponse;
 import org.company.springliquibase.model.UserRequest;
 import org.company.springliquibase.model.UserResponse;
+import org.company.springliquibase.model.criteria.PageCriteria;
+import org.company.springliquibase.model.criteria.UserCriteria;
+import org.company.springliquibase.specification.UserSpecification;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+
+import static org.company.springliquibase.constants.CriteriaConstants.COUNT_DEFAULT_VALUE;
+import static org.company.springliquibase.constants.CriteriaConstants.PAGE_DEFAULT_VALUE;
+import static org.company.springliquibase.mapper.UserMapper.mapToPageableResponse;
 
 @Service
 @Slf4j
@@ -37,6 +46,15 @@ public class UserService {
 
         userRepository.save(UserMapper.toUserEntity(userRequest));
         log.info("ActionLog.saveUser.end userRequest: {}", userRequest);
+    }
+
+    public PageableUserResponse getUsers(PageCriteria pageCriteria, UserCriteria userCriteria) {
+        log.info("ActionLog.getUsers.start criteria: {}, userCriteria: {}", pageCriteria, userCriteria);
+        var pageNumber = pageCriteria.getPage() == null ? PAGE_DEFAULT_VALUE : pageCriteria.getPage();
+        var count = pageCriteria.getCount() == null ? COUNT_DEFAULT_VALUE : pageCriteria.getCount();
+        var userPage = userRepository.findAll(new UserSpecification(userCriteria), PageRequest.of(pageNumber, count));
+        log.info("ActionLog.getUsers.end criteria: {}, userCriteria: {}", pageCriteria, userCriteria);
+        return mapToPageableResponse(userPage);
     }
 
 }

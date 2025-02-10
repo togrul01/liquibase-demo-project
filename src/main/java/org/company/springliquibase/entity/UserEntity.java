@@ -23,6 +23,8 @@ public class UserEntity {
 
     private Integer age;
 
+    private String birthPlace;
+
     @CreationTimestamp
     private LocalDateTime createdAt;
 

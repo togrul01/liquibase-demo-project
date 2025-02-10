@@ -1,0 +1,12 @@
+databaseChangeLog:
+  - changeSet:
+      id: Add birthPlace column to users table
+      author: Togrul Jafarov
+      changes:
+        - addColumn:
+            tableName: users
+            columns:
+              - column:
+                  name: birth_place
+                  type: varchar(255)
+                  remarks: "User's birth place"
