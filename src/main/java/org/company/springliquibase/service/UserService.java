@@ -3,6 +3,7 @@ package org.company.springliquibase.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.company.springliquibase.dao.UserRepository;
+import org.company.springliquibase.exception.UserAlreadyExistsException;
 import org.company.springliquibase.exception.UserNotFoundException;
 import org.company.springliquibase.mapper.UserMapper;
 import org.company.springliquibase.model.PageableUserResponse;
@@ -41,7 +42,7 @@ public class UserService {
 
         if (userRepository.existsByUserName((userRequest.getUserName()))) {
             log.error("ActionLog.saveUser.error Username already exists: {}", userRequest.getUserName());
-            throw new IllegalArgumentException("Username already exists: " + userRequest.getUserName());
+            throw new UserAlreadyExistsException("Username already exists: " + userRequest.getUserName());
         }
 
         userRepository.save(UserMapper.toUserEntity(userRequest));
