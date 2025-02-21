@@ -1,4 +1,4 @@
-package org.company.springliquibase.model;
+package org.company.springliquibase.model.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

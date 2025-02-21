@@ -1,6 +1,5 @@
 package org.company.springliquibase.model.criteria;
 
-import jakarta.persistence.Id;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;

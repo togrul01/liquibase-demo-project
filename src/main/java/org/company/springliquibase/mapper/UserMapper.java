@@ -1,14 +1,17 @@
 package org.company.springliquibase.mapper;
 
 import org.company.springliquibase.entity.UserEntity;
-import org.company.springliquibase.model.PageableUserResponse;
-import org.company.springliquibase.model.UserRequest;
-import org.company.springliquibase.model.UserResponse;
+import org.company.springliquibase.model.response.PageableUserResponse;
+import org.company.springliquibase.model.request.UserRequest;
+import org.company.springliquibase.model.response.UserResponse;
 import org.springframework.data.domain.Page;
 
-import java.util.stream.Collectors;
+public final class UserMapper {
 
-public class UserMapper {
+    private UserMapper() {
+        throw new UnsupportedOperationException("This is a utility class and cannot be instantiated");
+    }
+
     public static UserResponse toUserResponse(UserEntity userEntity) {
         return UserResponse.builder()
                 .id(userEntity.getId())
@@ -28,11 +31,13 @@ public class UserMapper {
 
     public static PageableUserResponse mapToPageableResponse(Page<UserEntity> userPage) {
         return PageableUserResponse.builder()
-                .userResponses(userPage.getContent().stream().map(UserMapper::toUserResponse).
-                        collect(Collectors.toList()))
+                .userResponses(userPage.getContent().stream()
+                        .map(UserMapper::toUserResponse)
+                        .toList())
                 .lastPageNumber(userPage.getTotalPages())
                 .totalElements(userPage.getTotalElements())
                 .hasNextPage(userPage.hasNext())
                 .build();
     }
+
 }

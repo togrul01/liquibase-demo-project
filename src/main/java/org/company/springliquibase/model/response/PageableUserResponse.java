@@ -1,4 +1,4 @@
-package org.company.springliquibase.model;
+package org.company.springliquibase.model.response;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;

@@ -1,0 +1,12 @@
+databaseChangeLog:
+  - changeSet:
+      id: AddCardBrandColumnToCardEntity
+      author: Togrul Jafarov
+      changes:
+        - addColumn:
+            tableName: cards
+            columns:
+              - column:
+                  name: card_brand
+                  type: varchar(50)
+                  remarks: "Card brand (e.g., VISA, MASTERCARD)"

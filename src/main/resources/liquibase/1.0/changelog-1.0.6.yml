@@ -1,0 +1,16 @@
+databaseChangeLog:
+  - changeSet:
+      id: Add timestamps to cards table
+      author: Togrul Jafarov
+      changes:
+        - addColumn:
+            tableName: cards
+            columns:
+              - column:
+                  name: created_at
+                  type: timestamp
+                  remarks: "Timestamp when the record was created"
+              - column:
+                  name: updated_at
+                  type: timestamp
+                  remarks: "Timestamp when the record was last updated"

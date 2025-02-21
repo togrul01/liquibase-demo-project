@@ -6,9 +6,9 @@ import org.company.springliquibase.dao.UserRepository;
 import org.company.springliquibase.exception.UserAlreadyExistsException;
 import org.company.springliquibase.exception.UserNotFoundException;
 import org.company.springliquibase.mapper.UserMapper;
-import org.company.springliquibase.model.PageableUserResponse;
-import org.company.springliquibase.model.UserRequest;
-import org.company.springliquibase.model.UserResponse;
+import org.company.springliquibase.model.response.PageableUserResponse;
+import org.company.springliquibase.model.request.UserRequest;
+import org.company.springliquibase.model.response.UserResponse;
 import org.company.springliquibase.model.criteria.PageCriteria;
 import org.company.springliquibase.model.criteria.UserCriteria;
 import org.company.springliquibase.specification.UserSpecification;
@@ -51,8 +51,8 @@ public class UserService {
 
     public PageableUserResponse getUsers(PageCriteria pageCriteria, UserCriteria userCriteria) {
         log.info("ActionLog.getUsers.start criteria: {}, userCriteria: {}", pageCriteria, userCriteria);
-        var pageNumber = pageCriteria.getPage() == null ? PAGE_DEFAULT_VALUE : pageCriteria.getPage();
-        var count = pageCriteria.getCount() == null ? COUNT_DEFAULT_VALUE : pageCriteria.getCount();
+        var pageNumber = pageCriteria.getPage() == null ? PAGE_DEFAULT_VALUE.getIntegerValue() : pageCriteria.getPage();
+        var count = pageCriteria.getCount() == null ? COUNT_DEFAULT_VALUE.getIntegerValue() : pageCriteria.getCount();
         var userPage = userRepository.findAll(new UserSpecification(userCriteria), PageRequest.of(pageNumber, count));
         log.info("ActionLog.getUsers.end criteria: {}, userCriteria: {}", pageCriteria, userCriteria);
         return mapToPageableResponse(userPage);

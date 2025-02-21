@@ -1,9 +1,9 @@
 package org.company.springliquibase.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.company.springliquibase.model.PageableUserResponse;
-import org.company.springliquibase.model.UserRequest;
-import org.company.springliquibase.model.UserResponse;
+import org.company.springliquibase.model.response.PageableUserResponse;
+import org.company.springliquibase.model.request.UserRequest;
+import org.company.springliquibase.model.response.UserResponse;
 import org.company.springliquibase.model.criteria.PageCriteria;
 import org.company.springliquibase.model.criteria.UserCriteria;
 import org.company.springliquibase.service.UserService;
@@ -28,7 +28,7 @@ public class UserController {
         userService.saveUser(userRequest);
     }
 
-    @GetMapping
+    @GetMapping("/getUsers")
     public PageableUserResponse getUsers(PageCriteria pageCriteria, UserCriteria userCriteria) {
         return userService.getUsers(pageCriteria, userCriteria);
     }

@@ -1,0 +1,4 @@
+package org.company.springliquibase.exception;
+
+public class CardNumberValidationException {
+}

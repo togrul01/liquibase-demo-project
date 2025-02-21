@@ -1,0 +1,98 @@
+databaseChangeLog:
+  - changeSet:
+      id: Create cards table
+      author: Togrul Jafarov
+      changes:
+        - createTable:
+            tableName: cards
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: card_number
+                  type: varchar(16)
+                  constraints:
+                    unique: true
+                    nullable: false
+              - column:
+                  name: cardholder_name
+                  type: varchar(64)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: expiry_date
+                  type: date
+                  constraints:
+                    nullable: false
+              - column:
+                  name: cvv
+                  type: varchar(4)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: card_type
+                  type: varchar(64)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: issue_date
+                  type: date
+                  constraints:
+                    nullable: false
+              - column:
+                  name: balance
+                  type: numeric(16, 2)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status
+                  type: varchar(64)
+                  constraints:
+                    nullable: false
+        - createIndex:
+            indexName: idx_card_number
+            tableName: cards
+            columns:
+              - column:
+                  name: card_number
+
+  - changeSet:
+      id: Create shedlock table
+      author: Togrul Jafarov
+      changes:
+        - createTable:
+            tableName: shedlock
+            columns:
+              - column:
+                  name: name
+                  type: varchar(64)
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: shedlock_pk
+                    nullable: false
+              - column:
+                  name: lock_until
+                  type: timestamp(3)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: locked_at
+                  type: timestamp(3)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: locked_by
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+        - createIndex:
+            indexName: idx_shedlock_name
+            tableName: shedlock
+            columns:
+              - column:
+                  name: name
