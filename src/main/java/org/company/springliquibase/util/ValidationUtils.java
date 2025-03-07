@@ -55,21 +55,11 @@ public class ValidationUtils {
     public static String generateValidCardNumber(CardBrand cardBrand) {
         StringBuilder cardNumber = new StringBuilder();
         switch (cardBrand) {
-            case VISA:
-                cardNumber.append("4"); // Visa prefix
-                break;
-            case MASTERCARD:
-                int mastercardPrefix = 51 + RANDOM.nextInt(5); // Mastercard prefix between 51 and 55
-                cardNumber.append(mastercardPrefix);
-                break;
-            case AMEX:
-                cardNumber.append("34"); // AMEX prefix
-                break;
-            case DISCOVER:
-                cardNumber.append("6011"); // Discover prefix
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid card type: " + cardBrand);
+            case VISA -> cardNumber.append("4");       // Visa prefix
+            case MASTERCARD -> cardNumber.append(51 + RANDOM.nextInt(5)); // MasterCard prefix
+            case AMEX -> cardNumber.append("34");      // AMEX prefix
+            case DISCOVER -> cardNumber.append("6011");    // Discover prefix
+            default -> throw new IllegalArgumentException("Invalid card type: " + cardBrand);
         }
 
         // Ensure that we fill the card number to a total length of 15 before adding the check digit

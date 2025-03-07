@@ -1,5 +1,7 @@
 package org.company.springliquibase.service;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.company.springliquibase.dao.CardRepository;
@@ -18,6 +20,7 @@ import org.company.springliquibase.specification.CardSpecification;
 import org.company.springliquibase.util.ValidationUtils;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -36,10 +39,13 @@ import static org.company.springliquibase.util.ValidationUtils.calculateExpiryDa
 @RequiredArgsConstructor
 @Slf4j
 public class CardServiceImpl implements CardService {
+    @PersistenceContext
+    private EntityManager entityManager;
     private final CardRepository cardRepository;
     private final Random random = new Random(); //Creating a single Random object at class level
 
     @Override
+    @Transactional
     public void createCard(CardRequest request) {
         log.info("ActionLog.createCard.start create card");
         if (request.getCardNumber() == null || request.getCardNumber().trim().isEmpty()) {
@@ -106,6 +112,7 @@ public class CardServiceImpl implements CardService {
     }
 
     @Override
+    @Transactional
     public void updateCard(Long cardId, CardRequest request) {
         log.info("ActionLog.updateCard.start with id: {}", cardId);
         CardEntity card = fetchCardIfExist(cardId);
@@ -131,17 +138,33 @@ public class CardServiceImpl implements CardService {
         });
     }
 
+    @Transactional
     @Override
     public void increaseCardBalances() {
+        cardRepository.increaseActiveCardBalances();
+    }
+
+    @Override
+    @Transactional
+    public void increaseCardBalancesWithJpa() {
+        int batchSize = 50;
         List<CardEntity> cards = cardRepository.findAll();
-        cards.forEach(card -> {
+
+        for (int i = 0; i < cards.size(); i++) {
+            CardEntity card = cards.get(i);
             BigDecimal percentage = new BigDecimal("0.05");
             BigDecimal currentBalance = card.getBalance();
             BigDecimal increaseAmount = currentBalance.multiply(percentage);
             card.setBalance(currentBalance.add(increaseAmount));
-        });
-        cardRepository.saveAll(cards);
+
+            if (i > 0 && i % batchSize == 0) {
+                entityManager.flush(); // Deyişiklikleri database gönder
+                entityManager.clear(); // memorydeki  obyektleri temizleyir
+            }
+        }
+        entityManager.flush();
     }
+
 
     private void validateCardRequest(CardRequest request) {
         ValidationUtils.validateNotEmpty(request.getCardNumber(), ExceptionConstants.

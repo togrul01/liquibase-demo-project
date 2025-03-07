@@ -3,6 +3,8 @@ package org.company.springliquibase.dao;
 
 import org.company.springliquibase.entity.CardEntity;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 
@@ -16,4 +18,9 @@ public interface CardRepository extends CrudRepository<CardEntity, Long>, JpaSpe
     boolean existsByCardNumber(String cardNumber);
 
     Optional<CardEntity> findByCardNumber(String cardNumber);
+
+    @Modifying // batch processing
+    @Query("UPDATE CardEntity c SET c.balance = c.balance * 1.05 WHERE c.status = 'ACTIVE'")
+    void increaseActiveCardBalances();
+
 }

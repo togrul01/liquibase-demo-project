@@ -16,4 +16,10 @@ public class CardScheduler {
     public void increaseCardBalances() {
         cardService.increaseCardBalances();
     }
+
+    @Scheduled(fixedDelayString = "PT1M")
+    @SchedulerLock(name = "increaseCardBalances", lockAtLeastFor = "PT1M", lockAtMostFor = "PT3M")
+    public void increaseCardBalancesWithJpa() {
+        cardService.increaseCardBalancesWithJpa();
+    }
 }

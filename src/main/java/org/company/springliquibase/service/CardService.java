@@ -26,4 +26,6 @@ public interface CardService {
 
     void increaseCardBalances();
 
+    void increaseCardBalancesWithJpa();
+
 }
