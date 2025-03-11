@@ -18,7 +18,6 @@ import org.springframework.stereotype.Service;
 import static org.company.springliquibase.constants.CriteriaConstants.COUNT_DEFAULT_VALUE;
 import static org.company.springliquibase.constants.CriteriaConstants.PAGE_DEFAULT_VALUE;
 import static org.company.springliquibase.mapper.UserMapper.mapToPageableResponse;
-import static org.company.springliquibase.util.LocalizationUtil.getLocalizedMessageByKey;
 
 @Service
 @Slf4j
@@ -43,8 +42,7 @@ public class UserService {
 
         if (userRepository.existsByUserName((userRequest.getUserName()))) {
             log.error("ActionLog.saveUser.error Username already exists: {}", userRequest.getUserName());
-            var message = getLocalizedMessageByKey("i18n/error", "user.already.exist.exception");
-            throw new UserAlreadyExistsException(message + userRequest.getUserName());
+            throw new UserAlreadyExistsException("Username already exists: " + userRequest.getUserName());
         }
 
         userRepository.save(UserMapper.toUserEntity(userRequest));

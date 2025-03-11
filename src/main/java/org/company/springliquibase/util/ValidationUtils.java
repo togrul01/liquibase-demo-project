@@ -2,15 +2,17 @@ package org.company.springliquibase.util;
 
 import org.company.springliquibase.enums.CardBrand;
 import org.company.springliquibase.enums.CardType;
-import org.company.springliquibase.constants.ExceptionConstants;
 import org.company.springliquibase.exception.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.security.SecureRandom;
 
+import static org.company.springliquibase.util.LocalizationUtil.getLocalizedMessageByKey;
+
 public class ValidationUtils {
     private static final SecureRandom RANDOM = new SecureRandom();
+    private static final String ERROR_BUNDLE = "i18n/error"; // Constant for the base string
 
     private ValidationUtils() {
     }
@@ -35,20 +37,24 @@ public class ValidationUtils {
 
     public static void validateCardNumber(String cardNumber) {
         if (cardNumber == null || cardNumber.trim().isEmpty()) {
-            throw new CardNumberValidationException(ExceptionConstants.EMPTY_CARD_NUMBER.getMessage());
+            throw new CardNumberValidationException(getLocalizedMessageByKey
+                    (ERROR_BUNDLE, "empty.card.type.exception"));
         }
         if (!isValidCardNumber(cardNumber)) {
-            throw new CardNumberValidationException(ExceptionConstants.INVALID_CARD_NUMBER.getMessage());
+            var message = getLocalizedMessageByKey(ERROR_BUNDLE, "invalid.card.type.exception");
+            throw new CardNumberValidationException(message);
         }
     }
 
 
     public static void validateCvv(String cvv, String cardType) {
         if (cvv == null || cvv.trim().isEmpty()) {
-            throw new CvvValidationException(ExceptionConstants.EMPTY_CVV.getMessage());
+            throw new CvvValidationException(
+                    getLocalizedMessageByKey(ERROR_BUNDLE, "empty.cvv.exception"));
         }
         if (!isValidCvv(cvv, cardType)) {
-            throw new CvvValidationException("Invalid CVV number.");
+            var message = getLocalizedMessageByKey(ERROR_BUNDLE, "invalid.cvv.number.exception");
+            throw new CvvValidationException(message);
         }
     }
 

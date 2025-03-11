@@ -8,7 +8,6 @@ import org.company.springliquibase.dao.CardRepository;
 import org.company.springliquibase.entity.CardEntity;
 import org.company.springliquibase.enums.CardBrand;
 import org.company.springliquibase.enums.CardType;
-import org.company.springliquibase.constants.ExceptionConstants;
 import org.company.springliquibase.exception.*;
 import org.company.springliquibase.mapper.CardMapper;
 import org.company.springliquibase.model.criteria.CardCriteria;
@@ -31,8 +30,8 @@ import java.util.Random;
 import static org.company.springliquibase.constants.CriteriaConstants.COUNT_DEFAULT_VALUE;
 import static org.company.springliquibase.constants.CriteriaConstants.PAGE_DEFAULT_VALUE;
 import static org.company.springliquibase.enums.CardStatus.*;
-import static org.company.springliquibase.constants.ExceptionConstants.CARD_NOT_FOUND;
 import static org.company.springliquibase.mapper.CardMapper.*;
+import static org.company.springliquibase.util.LocalizationUtil.getLocalizedMessageByKey;
 import static org.company.springliquibase.util.ValidationUtils.calculateExpiryDate;
 
 @Service
@@ -43,6 +42,7 @@ public class CardServiceImpl implements CardService {
     private EntityManager entityManager;
     private final CardRepository cardRepository;
     private final Random random = new Random(); //Creating a single Random object at class level
+    private static final String ERROR_BUNDLE = "i18n/error"; // Constant for the base string
 
     @Override
     @Transactional
@@ -88,7 +88,8 @@ public class CardServiceImpl implements CardService {
     private CardEntity fetchCardIfExist(String cardNumber) {
         return cardRepository.findByCardNumber(cardNumber).orElseThrow(() -> {
             log.error("ActionLog.fetchCardIfExist.start with card number: {} not found", cardNumber);
-            return new CardNotFoundException(CARD_NOT_FOUND.getMessage());
+            var message = getLocalizedMessageByKey(ERROR_BUNDLE, "card.not.found.exception");
+            return new CardNotFoundException(message);
         });
     }
 
@@ -134,7 +135,8 @@ public class CardServiceImpl implements CardService {
         return cardRepository.findById(cardId).orElseThrow(() ->
         {
             log.error("ActionLog.fetchCardIfExist.start with id: {} not found", cardId);
-            return new CardNotFoundException(CARD_NOT_FOUND.getMessage());
+            return new CardNotFoundException(
+                    getLocalizedMessageByKey(ERROR_BUNDLE, "card.not.found.exception"));
         });
     }
 
@@ -167,34 +169,35 @@ public class CardServiceImpl implements CardService {
 
 
     private void validateCardRequest(CardRequest request) {
-        ValidationUtils.validateNotEmpty(request.getCardNumber(), ExceptionConstants.
-                EMPTY_CARD_NUMBER.getMessage());
+        ValidationUtils.validateNotEmpty(request.getCardNumber(),
+                getLocalizedMessageByKey(ERROR_BUNDLE, "empty.card.number.exception"));
         ValidationUtils.validateCardNumber(request.getCardNumber());
 
-        ValidationUtils.validateNotEmpty(request.getCardholderName(), ExceptionConstants.
-                EMPTY_CARDHOLDER_NAME.getMessage());
+        ValidationUtils.validateNotEmpty(request.getCardholderName(),
+                getLocalizedMessageByKey(ERROR_BUNDLE, "empty.cardholder.name.exception"));
 
-        ValidationUtils.validateNotEmpty(request.getCvv(), ExceptionConstants.
-                EMPTY_CVV.getMessage());
+        ValidationUtils.validateNotEmpty(request.getCvv(),
+                getLocalizedMessageByKey(ERROR_BUNDLE, "empty.cvv.exception"));
+
         ValidationUtils.validateCvv(request.getCvv(), request.getCardType());
 
-        ValidationUtils.validateNotEmpty(request.getCardType(), ExceptionConstants.
-                EMPTY_CARD_TYPE.getMessage());
+        ValidationUtils.validateNotEmpty(request.getCardType(),
+                getLocalizedMessageByKey(ERROR_BUNDLE, "empty.card.type.exception"));
+
         List<String> validCardTypes = List.of("DEBIT", "CREDIT");
         if (!validCardTypes.contains(request.getCardType().toUpperCase())) {
-            throw new CardTypeValidationException(ExceptionConstants.
-                    INVALID_CARD_TYPE.getMessage());
+            throw new CardTypeValidationException(
+                    getLocalizedMessageByKey(ERROR_BUNDLE, "empty.card.type.exception"));
         }
 
-        ValidationUtils.validateFutureDate(request.getExpiryDate(), ExceptionConstants.
-                EXPIRED_DATE.getMessage());
+        ValidationUtils.validateFutureDate(request.getExpiryDate(),
+                getLocalizedMessageByKey(ERROR_BUNDLE, "expired.date.exception"));
 
-        ValidationUtils.validatePositive(request.getBalance(), ExceptionConstants.
-                NEGATIVE_BALANCE.getMessage());
-
+        ValidationUtils.validatePositive(request.getBalance(),
+                getLocalizedMessageByKey(ERROR_BUNDLE, "negative.balance.exception"));
         if (cardRepository.existsByCardNumber(request.getCardNumber())) {
-            throw new DuplicateCardNumberException(ExceptionConstants.
-                    DUPLICATE_CARD_NUMBER.getMessage());
+            throw new DuplicateCardNumberException(
+                    getLocalizedMessageByKey(ERROR_BUNDLE, "duplicate.card.number.exception"));
         }
     }
 
