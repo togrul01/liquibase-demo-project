@@ -48,18 +48,45 @@ public class CardServiceImpl implements CardService {
     @Override
     @Transactional
     public void createCard(CardRequest request) {
-        log.info("ActionLog.createCard.start create card");
-        if (request.getCardNumber() == null || request.getCardNumber().trim().isEmpty()) {
-            request.setCardNumber(ValidationUtils.generateValidCardNumber(CardBrand.valueOf(request.getCardBrand())));
+        try {
+            log.info("ActionLog.createCard.start create card");
+            if (request.getCardNumber() == null || request.getCardNumber().trim().isEmpty()) {
+                request.setCardNumber(ValidationUtils.generateValidCardNumber(CardBrand.valueOf(request.getCardBrand())));
+            }
+
+            request.setCvv(generateRandomCvv());
+            LocalDate issueDate = LocalDate.now();
+            request.setIssueDate(issueDate);
+            request.setExpiryDate(calculateExpiryDate(CardType.valueOf(request.getCardType()), issueDate));
+
+            if (request.getBalance().compareTo(BigDecimal.ZERO) < 0) {
+                String errorMessage = getLocalizedMessageByKey(ERROR_BUNDLE, "negative.balance.exception");
+                log.error("Negative balance provided: {}", request.getBalance());
+                throw new BalanceValidationException(errorMessage);
+            }
+
+            validateCardRequest(request);
+            cardRepository.save(buildCardEntity(request));
+
+            log.info("ActionLog.createCard.success create card");
+
+        } catch (IllegalArgumentException e) {
+            String errorMessage = getLocalizedMessageByKey(ERROR_BUNDLE, "invalid.card.type.exception");
+            log.error("Invalid card type provided: {}", request.getCardType());
+            throw new CardTypeValidationException(errorMessage);
+        } catch (BalanceValidationException e) {
+            log.error("Negative balance detected: {}", e.getMessage());
+            throw e;
+        } catch (CardTypeValidationException e) {
+            log.error("Card type validation failed: {}", e.getMessage());
+            throw e;
+        } catch (Exception e) {
+            String errorMessage = getLocalizedMessageByKey(ERROR_BUNDLE, "unexpected.error.exception");
+            log.error("Unexpected error occurred while creating card", e);
+            throw new RuntimeException(errorMessage);
         }
-        request.setCvv(generateRandomCvv());
-        LocalDate issueDate = LocalDate.now();
-        request.setIssueDate(issueDate);
-        request.setExpiryDate(calculateExpiryDate(CardType.valueOf(request.getCardType()), issueDate));
-        validateCardRequest(request);
-        cardRepository.save(buildCardEntity(request));
-        log.info("ActionLog.createCard.success create card");
     }
+
 
     @Override
     public CardResponse getCard(Long cardId) {
