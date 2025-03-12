@@ -40,6 +40,7 @@ import static org.company.springliquibase.util.ValidationUtils.calculateExpiryDa
 public class CardServiceImpl implements CardService {
     @PersistenceContext
     private EntityManager entityManager;
+
     private final CardRepository cardRepository;
     private final Random random = new Random(); //Creating a single Random object at class level
     private static final String ERROR_BUNDLE = "i18n/error"; // Constant for the base string
@@ -187,7 +188,7 @@ public class CardServiceImpl implements CardService {
         List<String> validCardTypes = List.of("DEBIT", "CREDIT");
         if (!validCardTypes.contains(request.getCardType().toUpperCase())) {
             throw new CardTypeValidationException(
-                    getLocalizedMessageByKey(ERROR_BUNDLE, "empty.card.type.exception"));
+                    getLocalizedMessageByKey(ERROR_BUNDLE, "invalid.card.type.exception"));
         }
 
         ValidationUtils.validateFutureDate(request.getExpiryDate(),

@@ -38,10 +38,10 @@ public class ValidationUtils {
     public static void validateCardNumber(String cardNumber) {
         if (cardNumber == null || cardNumber.trim().isEmpty()) {
             throw new CardNumberValidationException(getLocalizedMessageByKey
-                    (ERROR_BUNDLE, "empty.card.type.exception"));
+                    (ERROR_BUNDLE, "empty.card.number.exception"));
         }
         if (!isValidCardNumber(cardNumber)) {
-            var message = getLocalizedMessageByKey(ERROR_BUNDLE, "invalid.card.type.exception");
+            var message = getLocalizedMessageByKey(ERROR_BUNDLE, "invalid.card.number.exception");
             throw new CardNumberValidationException(message);
         }
     }

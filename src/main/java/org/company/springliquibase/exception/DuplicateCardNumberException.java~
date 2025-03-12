@@ -1,0 +1,9 @@
+package org.company.springliquibase.exception;
+
+import org.springframework.http.HttpStatus;
+
+public class DuplicateCardNumberException extends RuntimeException {
+    public DuplicateCardNumberException(String message) {
+        super(message);
+    }
+}

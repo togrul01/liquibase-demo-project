@@ -1,0 +1,55 @@
+package org.company.springliquibase.util;
+
+import lombok.experimental.UtilityClass;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.i18n.LocaleContextHolder;
+
+import java.util.MissingResourceException;
+import java.util.ResourceBundle;
+
+@UtilityClass
+@Slf4j
+
+public class LocalizationUtil {
+
+    public static String getLocalizedMessageByStatusCode(String bundleName, Integer statusCode) {
+        try {
+            var resourceBundle = ResourceBundle.getBundle(bundleName, LocaleContextHolder.getLocale());
+            return resourceBundle.getString(getMessageKeyByStatusCode(statusCode));
+        } catch (MissingResourceException e) {
+            log.error("Localization error (By StatusCode): bundleName={}, statusCode={}", bundleName, statusCode, e);
+            return "Localization failed for status code: " + statusCode;
+        }
+    }
+
+    public static String getLocalizedMessageByKey(String bundleName, String key) {
+        try {
+            log.info("Attempting to load bundle: {}", bundleName); // Hata ayıklama
+            var locale = LocaleContextHolder.getLocale();
+            var resourceBundle = ResourceBundle.getBundle(bundleName, locale);
+            log.info("Bundle loaded successfully: {}", bundleName); // Hata ayıklama
+            log.info("Attempting to get key: {}", key); // Hata ayıklama
+            return resourceBundle.getString(key);
+        } catch (MissingResourceException e) {
+            log.error("Localization error (By Key): bundleName={}, key={}", bundleName, key, e);
+            return "Localization failed for key: " + key;
+        }
+    }
+
+    private static String getMessageKeyByStatusCode(Integer statusCode) {
+        return switch (statusCode) {
+            case 400 -> "client.error.exception";           // Bad Request
+            case 401 -> "unauthorized.exception";           // Unauthorized
+            case 403 -> "forbidden.exception";              // Forbidden
+            case 404 -> "user.not.found.exception";         // Not Found
+            case 409 -> "user.already.exist.exception";     // Conflict (Duplicate entry)
+            case 422 -> "unprocessable.entity.exception";   // Unprocessable Entity
+            case 500 -> "server.error.exception";           // Internal Server Error
+            case 502 -> "bad.gateway.exception";            // Bad Gateway
+            case 503 -> "service.unavailable.exception";    // Service Unavailable
+            case 504 -> "gateway.timeout.exception";        // Gateway Timeout
+            default -> "unexpected.exception";              // Unknown or unspecified error
+        };
+    }
+
+}
