@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.company.springliquibase.dao.CardRepository;
 import org.company.springliquibase.entity.CardEntity;
 import org.company.springliquibase.enums.CardBrand;
+import org.company.springliquibase.enums.CardStatus;
 import org.company.springliquibase.enums.CardType;
 import org.company.springliquibase.exception.*;
 import org.company.springliquibase.mapper.CardMapper;
@@ -20,6 +21,7 @@ import org.company.springliquibase.util.ValidationUtils;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -50,8 +52,9 @@ public class CardServiceImpl implements CardService {
     public void createCard(CardRequest request) {
         try {
             log.info("ActionLog.createCard.start create card");
-            if (request.getCardNumber() == null || request.getCardNumber().trim().isEmpty()) {
-                request.setCardNumber(ValidationUtils.generateValidCardNumber(CardBrand.valueOf(request.getCardBrand())));
+            if (!StringUtils.hasText(request.getCardNumber())) {
+                request.setCardNumber(ValidationUtils.
+                        generateValidCardNumber(CardBrand.valueOf(request.getCardBrand())));
             }
 
             request.setCvv(generateRandomCvv());
@@ -125,11 +128,12 @@ public class CardServiceImpl implements CardService {
     @Override
     public List<CardResponse> getCards() {
         log.info("ActionLog.getCards.start fetching all cards");
-        List<CardEntity> cards = cardRepository.findAll();
+        List<CardEntity> cards = cardRepository.findAllByStatusNot(CardStatus.DELETED);
         return cards.stream()
                 .map(CardMapper::buildCardResponse)
                 .toList();
     }
+
 
     @Override
     public void deleteCard(Long cardId) {

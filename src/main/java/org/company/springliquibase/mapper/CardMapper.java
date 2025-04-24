@@ -1,11 +1,9 @@
 package org.company.springliquibase.mapper;
 
 import org.company.springliquibase.entity.CardEntity;
-import org.company.springliquibase.entity.UserEntity;
 import org.company.springliquibase.model.request.CardRequest;
 import org.company.springliquibase.model.response.CardResponse;
 import org.company.springliquibase.model.response.PageableCardResponse;
-import org.company.springliquibase.model.response.PageableUserResponse;
 import org.springframework.data.domain.Page;
 
 import static org.company.springliquibase.enums.CardStatus.ACTIVE;
