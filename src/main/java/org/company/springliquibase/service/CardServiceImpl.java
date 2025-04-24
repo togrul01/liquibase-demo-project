@@ -69,7 +69,8 @@ public class CardServiceImpl implements CardService {
             }
 
             validateCardRequest(request);
-            cardRepository.save(buildCardEntity(request));
+            CardEntity card = buildCardEntity(request);
+            cardRepository.save(card);
 
             log.info("ActionLog.createCard.success create card");
 
@@ -101,9 +102,9 @@ public class CardServiceImpl implements CardService {
 
     @Override
     public CardResponse getCard(String cardNumber) {
-        log.info("ActionLog.getCard.start with card number: {}", cardNumber);
+        log.info("ActionLog.getCard.start with card number: {}", maskCardNumber(cardNumber)); // Masked here
         CardEntity card = fetchCardIfExist(cardNumber);
-        log.info("ActionLog.getCard.success with card number: {}", cardNumber);
+        log.info("ActionLog.getCard.success with card number: {}", maskCardNumber(cardNumber));  // Masked here
         return buildCardResponse(card);
     }
 
@@ -118,7 +119,7 @@ public class CardServiceImpl implements CardService {
 
     private CardEntity fetchCardIfExist(String cardNumber) {
         return cardRepository.findByCardNumber(cardNumber).orElseThrow(() -> {
-            log.error("ActionLog.fetchCardIfExist.start with card number: {} not found", cardNumber);
+            log.error("ActionLog.fetchCardIfExist.start with card number: {} not found", maskCardNumber(cardNumber)); // Masked here
             var message = getLocalizedMessageByKey(ERROR_BUNDLE, "card.not.found.exception");
             return new CardNotFoundException(message);
         });
@@ -238,4 +239,13 @@ public class CardServiceImpl implements CardService {
         return String.valueOf(cvv);
     }
 
+    private String maskCardNumber(String cardNumber) {
+        if (cardNumber != null && cardNumber.length() > 8) {
+            return "****" + cardNumber.substring(cardNumber.length() - 8);
+        } else if (cardNumber != null) {
+            return "****" + cardNumber;
+        }
+        return "****";
+    }
 }
+

@@ -24,10 +24,8 @@ public class CardController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<CardResponse> createCard(@RequestBody CardRequest cardRequest) {
-        log.info("ActionLog.createCard.start create card");
         cardService.createCard(cardRequest);
         CardResponse createdCard = cardService.getCard(cardRequest.getCardNumber());
-        log.info("ActionLog.createCard.success create card");
         return new ResponseEntity<>(createdCard, HttpStatus.CREATED);
     }
 
