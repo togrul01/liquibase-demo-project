@@ -1,9 +1,6 @@
 package org.company.springliquibase.model.response;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.company.springliquibase.enums.CardStatus;
 import java.math.BigDecimal;
 import java.time.LocalDate;

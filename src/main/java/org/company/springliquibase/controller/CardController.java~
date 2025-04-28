@@ -25,6 +25,11 @@ public class CardController {
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<CardResponse> createCard(@RequestBody CardRequest cardRequest) {
         CardResponse createdCard = cardService.createCard(cardRequest);
+
+        // Response body'yi request attribute olarak set edelim
+        // Böylece LogInterceptor'da bu değeri yakalayabiliriz
+        request.setAttribute("responseBody", createdCard);
+
         return new ResponseEntity<>(createdCard, HttpStatus.CREATED);
     }
 

@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface CardService {
 
-    void createCard(CardRequest request);
+    CardResponse createCard(CardRequest request);
 
     CardResponse getCard(Long cardId);
 

@@ -4,6 +4,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
+import org.company.springliquibase.model.response.CardResponse;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
@@ -30,16 +31,20 @@ public class LogInterceptor implements HandlerInterceptor {
         String uri = request.getRequestURI();
         String method = request.getMethod();
 
-        // Get the card number.
-        String cardNumber = request.getParameter("cardNumber");
-        String maskedCardNumber = maskSensitiveData(cardNumber);
+        // Retrieve the CardResponse stored in the request
+        CardResponse cardResponse = (CardResponse) request.getAttribute("cardResponse");
 
-        // Log the masked card number.
-        log.info("Request started - Method: {}, URI: {}, Masked CardNumber: {}", method, uri, maskedCardNumber);
+        if (cardResponse != null) {
+            log.info("Request started - Method: {}, URI: {}, Masked CardNumber: {}, Card Response: {}",
+                    method, uri, maskSensitiveData(cardResponse.getCardNumber()), cardResponse);
+        } else {
+            log.info("Request started - Method: {}, URI: {}, No card created", method, uri);
+        }
 
         request.setAttribute("startTime", startTime);
         return true;
     }
+
 
     /**
      * Called after the request is handled.

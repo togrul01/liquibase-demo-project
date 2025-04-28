@@ -21,7 +21,49 @@ services:
       retries: 5
       timeout: 5s
 
-  app:
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.10
+    container_name: elasticsearch
+    environment:
+      - discovery.type=single-node
+      - ES_JAVA_OPTS=-Xms512m -Xmx512m
+    ports:
+      - "9200:9200"
+    volumes:
+      - esdata:/usr/share/elasticsearch/data
+    networks:
+      - app-network
+
+  logstash:
+    image: docker.elastic.co/logstash/logstash:7.17.10
+    container_name: logstash
+    volumes:
+      - ./logstash/:/logstash_dir
+    command: logstash -f /logstash_dir/pipeline/logstash.conf
+    ports:
+      - "5044:5044"
+      - "5000:5000/tcp"
+      - "5000:5000/udp"
+      - "9600:9600"
+    environment:
+      LS_JAVA_OPTIONS: "-Xmx256m -Xms256m"
+    depends_on:
+      - elasticsearch
+    networks:
+      - app-network
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.17.10
+    container_name: kibana
+    ports:
+      - "5601:5601"
+    depends_on:
+      - elasticsearch
+    networks:
+      - app-network
+
+  spring-boot-app:
     build: .
     container_name: spring-boot-app
     restart: always
@@ -31,10 +73,12 @@ services:
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: 123456
     ports:
-      - "8081:8081"
+      - "8081:8080"
     depends_on:
       postgres:
         condition: service_healthy
+      logstash:
+        condition: service_started
     networks:
       - app-network
 
@@ -44,3 +88,4 @@ networks:
 
 volumes:
   postgres_data:
+  esdata:

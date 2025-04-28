@@ -17,6 +17,7 @@ import org.company.springliquibase.model.request.CardRequest;
 import org.company.springliquibase.model.response.CardResponse;
 import org.company.springliquibase.model.response.PageableCardResponse;
 import org.company.springliquibase.specification.CardSpecification;
+import org.company.springliquibase.util.LoggingUtil;
 import org.company.springliquibase.util.ValidationUtils;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -46,15 +47,16 @@ public class CardServiceImpl implements CardService {
     private final CardRepository cardRepository;
     private final Random random = new Random(); //Creating a single Random object at class level
     private static final String ERROR_BUNDLE = "i18n/error"; // Constant for the base string
+    private static final String CREATE_CARD_ACTION = "createCard";
 
     @Override
     @Transactional
-    public void createCard(CardRequest request) {
+    public CardResponse createCard(CardRequest request) {
         try {
             log.info("ActionLog.createCard.start create card");
+
             if (!StringUtils.hasText(request.getCardNumber())) {
-                request.setCardNumber(ValidationUtils.
-                        generateValidCardNumber(CardBrand.valueOf(request.getCardBrand())));
+                request.setCardNumber(ValidationUtils.generateValidCardNumber(CardBrand.valueOf(request.getCardBrand())));
             }
 
             request.setCvv(generateRandomCvv());
@@ -69,20 +71,21 @@ public class CardServiceImpl implements CardService {
             }
 
             validateCardRequest(request);
-            CardEntity card = buildCardEntity(request);
-            cardRepository.save(card);
 
+            CardEntity card = buildCardEntity(request);
+            CardEntity savedCard = cardRepository.save(card); // Save and keep reference
+            CardResponse cardResponse = buildCardResponse(savedCard); // Hazır cavab yarat
             log.info("ActionLog.createCard.success create card");
+            LoggingUtil.logApiResponse(CREATE_CARD_ACTION, cardResponse);
+
+            return cardResponse;
 
         } catch (IllegalArgumentException e) {
             String errorMessage = getLocalizedMessageByKey(ERROR_BUNDLE, "invalid.card.type.exception");
             log.error("Invalid card type provided: {}", request.getCardType());
             throw new CardTypeValidationException(errorMessage);
-        } catch (BalanceValidationException e) {
-            log.error("Negative balance detected: {}", e.getMessage());
-            throw e;
-        } catch (CardTypeValidationException e) {
-            log.error("Card type validation failed: {}", e.getMessage());
+        } catch (BalanceValidationException | CardTypeValidationException e) {
+            log.error("Validation failed: {}", e.getMessage());
             throw e;
         } catch (Exception e) {
             String errorMessage = getLocalizedMessageByKey(ERROR_BUNDLE, "unexpected.error.exception");
@@ -96,15 +99,20 @@ public class CardServiceImpl implements CardService {
     public CardResponse getCard(Long cardId) {
         log.info("ActionLog.getCard.start with id: {}", cardId);
         CardEntity card = fetchCardIfExist(cardId);
+        CardResponse cardResponse = buildCardResponse(card);
+        LoggingUtil.logApiResponse(CREATE_CARD_ACTION, cardResponse);
+
         log.info("ActionLog.getCard.success with id: {}", cardId);
-        return buildCardResponse(card);
+        return cardResponse;
     }
 
     @Override
     public CardResponse getCard(String cardNumber) {
         log.info("ActionLog.getCard.start with card number: {}", maskCardNumber(cardNumber)); // Masked here
         CardEntity card = fetchCardIfExist(cardNumber);
-        log.info("ActionLog.getCard.success with card number: {}", maskCardNumber(cardNumber));  // Masked here
+        CardResponse cardResponse = buildCardResponse(card);
+        LoggingUtil.logApiResponse(CREATE_CARD_ACTION, cardResponse);
+        log.info("ActionLog.getCard.success with card number: {}", cardResponse);  // Masked here
         return buildCardResponse(card);
     }
 

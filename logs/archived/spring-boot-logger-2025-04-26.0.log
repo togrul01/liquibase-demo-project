@@ -1,0 +1,760 @@
+2025-04-26 00:32:11.156 [restartedMain] INFO  o.c.s.SpringLiquibaseApplication - Starting SpringLiquibaseApplication using Java 17.0.2 with PID 30248 (C:\Users\Togrul\JaspersoftWorkspace\spring-liquibase\target\classes started by Togrul in C:\Users\Togrul\JaspersoftWorkspace\spring-liquibase)
+2025-04-26 00:32:11.157 [restartedMain] DEBUG o.c.s.SpringLiquibaseApplication - Running with Spring Boot v3.4.2, Spring v6.2.2
+2025-04-26 00:32:11.157 [restartedMain] INFO  o.c.s.SpringLiquibaseApplication - No active profile set, falling back to 1 default profile: "default"
+2025-04-26 00:32:11.189 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-04-26 00:32:11.190 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-04-26 00:32:11.688 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-04-26 00:32:11.737 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 42 ms. Found 2 JPA repository interfaces.
+2025-04-26 00:32:12.168 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8081 (http)
+2025-04-26 00:32:12.179 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-04-26 00:32:12.179 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-04-26 00:32:12.225 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-04-26 00:32:12.226 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1035 ms
+2025-04-26 00:32:12.367 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-04-26 00:32:12.500 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@544e702e
+2025-04-26 00:32:12.502 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-04-26 00:32:12.638 [restartedMain] INFO  liquibase.database - Set default schema name to public
+2025-04-26 00:32:12.919 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.0.yml
+2025-04-26 00:32:12.931 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.1.yml
+2025-04-26 00:32:12.934 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.2.yml
+2025-04-26 00:32:12.936 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.3.yml
+2025-04-26 00:32:12.939 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.4.yml
+2025-04-26 00:32:12.941 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.5.yml
+2025-04-26 00:32:12.946 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.6.yml
+2025-04-26 00:32:12.948 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.7.yml
+2025-04-26 00:32:13.015 [restartedMain] INFO  liquibase.changelog - Reading from public.databasechangelog
+2025-04-26 00:32:13.070 [restartedMain] INFO  liquibase.ui - Database is up to date, no changesets to execute
+2025-04-26 00:32:13.072 [restartedMain] INFO  liquibase.changelog - Reading from public.databasechangelog
+2025-04-26 00:32:13.086 [restartedMain] INFO  liquibase.util - UPDATE SUMMARY
+2025-04-26 00:32:13.086 [restartedMain] INFO  liquibase.util - Run:                          0
+2025-04-26 00:32:13.086 [restartedMain] INFO  liquibase.util - Previously run:               9
+2025-04-26 00:32:13.086 [restartedMain] INFO  liquibase.util - Filtered out:                 0
+2025-04-26 00:32:13.086 [restartedMain] INFO  liquibase.util - -------------------------------
+2025-04-26 00:32:13.086 [restartedMain] INFO  liquibase.util - Total change sets:            9
+2025-04-26 00:32:13.087 [restartedMain] INFO  liquibase.util - Update summary generated
+2025-04-26 00:32:13.088 [restartedMain] INFO  liquibase.command - Command execution complete
+2025-04-26 00:32:13.162 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-04-26 00:32:13.231 [restartedMain] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.5.Final
+2025-04-26 00:32:13.264 [restartedMain] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-04-26 00:32:13.495 [restartedMain] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-04-26 00:32:13.507 [restartedMain] WARN  org.hibernate.orm.deprecation - HHH90000021: Encountered deprecated setting [hibernate.temp.use_jdbc_metadata_defaults], use [hibernate.boot.allow_jdbc_metadata_access] instead
+2025-04-26 00:32:13.526 [restartedMain] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-04-26 00:32:13.538 [restartedMain] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [undefined/unknown]
+	Database driver: undefined/unknown
+	Database version: 12.0
+	Autocommit mode: undefined/unknown
+	Isolation level: <unknown>
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-04-26 00:32:14.240 [restartedMain] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-04-26 00:32:14.243 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-04-26 00:32:14.416 [restartedMain] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-04-26 00:32:14.810 [restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-04-26 00:32:15.084 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2025-04-26 00:32:15.112 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8081 (http) with context path '/'
+2025-04-26 00:32:15.122 [restartedMain] INFO  o.c.s.SpringLiquibaseApplication - Started SpringLiquibaseApplication in 6.91 seconds (process running for 7.506)
+2025-04-26 00:40:46.929 [File Watcher] INFO  o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2025-04-26 00:40:46.932 [Thread-6] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-04-26 00:40:47.005 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-04-26 00:40:47.008 [Thread-6] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-04-26 00:40:47.011 [Thread-6] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-04-26 00:40:47.014 [Thread-6] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-04-26 00:41:05.042 [restartedMain] INFO  o.c.s.SpringLiquibaseApplication - Starting SpringLiquibaseApplication using Java 17.0.2 with PID 27400 (C:\Users\Togrul\JaspersoftWorkspace\spring-liquibase\target\classes started by Togrul in C:\Users\Togrul\JaspersoftWorkspace\spring-liquibase)
+2025-04-26 00:41:05.044 [restartedMain] DEBUG o.c.s.SpringLiquibaseApplication - Running with Spring Boot v3.4.2, Spring v6.2.2
+2025-04-26 00:41:05.044 [restartedMain] INFO  o.c.s.SpringLiquibaseApplication - No active profile set, falling back to 1 default profile: "default"
+2025-04-26 00:41:05.073 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-04-26 00:41:05.073 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-04-26 00:41:05.565 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-04-26 00:41:05.614 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 42 ms. Found 2 JPA repository interfaces.
+2025-04-26 00:41:06.029 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8081 (http)
+2025-04-26 00:41:06.040 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-04-26 00:41:06.040 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-04-26 00:41:06.082 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-04-26 00:41:06.083 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1009 ms
+2025-04-26 00:41:06.201 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-04-26 00:41:06.329 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@59cc4add
+2025-04-26 00:41:06.330 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-04-26 00:41:06.453 [restartedMain] INFO  liquibase.database - Set default schema name to public
+2025-04-26 00:41:06.700 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.0.yml
+2025-04-26 00:41:06.711 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.1.yml
+2025-04-26 00:41:06.713 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.2.yml
+2025-04-26 00:41:06.714 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.3.yml
+2025-04-26 00:41:06.716 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.4.yml
+2025-04-26 00:41:06.718 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.5.yml
+2025-04-26 00:41:06.724 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.6.yml
+2025-04-26 00:41:06.726 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.7.yml
+2025-04-26 00:41:06.788 [restartedMain] INFO  liquibase.changelog - Reading from public.databasechangelog
+2025-04-26 00:41:06.839 [restartedMain] INFO  liquibase.ui - Database is up to date, no changesets to execute
+2025-04-26 00:41:06.840 [restartedMain] INFO  liquibase.changelog - Reading from public.databasechangelog
+2025-04-26 00:41:06.848 [restartedMain] INFO  liquibase.util - UPDATE SUMMARY
+2025-04-26 00:41:06.849 [restartedMain] INFO  liquibase.util - Run:                          0
+2025-04-26 00:41:06.849 [restartedMain] INFO  liquibase.util - Previously run:               9
+2025-04-26 00:41:06.849 [restartedMain] INFO  liquibase.util - Filtered out:                 0
+2025-04-26 00:41:06.849 [restartedMain] INFO  liquibase.util - -------------------------------
+2025-04-26 00:41:06.849 [restartedMain] INFO  liquibase.util - Total change sets:            9
+2025-04-26 00:41:06.849 [restartedMain] INFO  liquibase.util - Update summary generated
+2025-04-26 00:41:06.850 [restartedMain] INFO  liquibase.command - Command execution complete
+2025-04-26 00:41:06.922 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-04-26 00:41:06.980 [restartedMain] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.5.Final
+2025-04-26 00:41:07.010 [restartedMain] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-04-26 00:41:07.231 [restartedMain] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-04-26 00:41:07.242 [restartedMain] WARN  org.hibernate.orm.deprecation - HHH90000021: Encountered deprecated setting [hibernate.temp.use_jdbc_metadata_defaults], use [hibernate.boot.allow_jdbc_metadata_access] instead
+2025-04-26 00:41:07.259 [restartedMain] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-04-26 00:41:07.272 [restartedMain] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [undefined/unknown]
+	Database driver: undefined/unknown
+	Database version: 12.0
+	Autocommit mode: undefined/unknown
+	Isolation level: <unknown>
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-04-26 00:41:07.928 [restartedMain] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-04-26 00:41:07.930 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-04-26 00:41:08.100 [restartedMain] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-04-26 00:41:08.499 [restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-04-26 00:41:08.772 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2025-04-26 00:41:08.799 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8081 (http) with context path '/'
+2025-04-26 00:41:08.809 [restartedMain] INFO  o.c.s.SpringLiquibaseApplication - Started SpringLiquibaseApplication in 6.644 seconds (process running for 7.242)
+2025-04-26 00:44:55.333 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-04-26 00:44:55.409 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-04-26 00:44:55.413 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-04-26 00:44:55.416 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-04-26 00:44:55.419 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-04-26 00:46:00.789 [restartedMain] INFO  o.c.s.SpringLiquibaseApplication - Starting SpringLiquibaseApplication using Java 17.0.2 with PID 32936 (C:\Users\Togrul\JaspersoftWorkspace\spring-liquibase\target\classes started by Togrul in C:\Users\Togrul\JaspersoftWorkspace\spring-liquibase)
+2025-04-26 00:46:00.792 [restartedMain] DEBUG o.c.s.SpringLiquibaseApplication - Running with Spring Boot v3.4.2, Spring v6.2.2
+2025-04-26 00:46:00.793 [restartedMain] INFO  o.c.s.SpringLiquibaseApplication - No active profile set, falling back to 1 default profile: "default"
+2025-04-26 00:46:00.836 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-04-26 00:46:00.836 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-04-26 00:46:01.517 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-04-26 00:46:01.602 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 76 ms. Found 2 JPA repository interfaces.
+2025-04-26 00:46:02.222 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8081 (http)
+2025-04-26 00:46:02.234 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-04-26 00:46:02.235 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-04-26 00:46:02.287 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-04-26 00:46:02.288 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1451 ms
+2025-04-26 00:46:02.480 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-04-26 00:46:02.633 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@1377ac6b
+2025-04-26 00:46:02.634 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-04-26 00:46:02.804 [restartedMain] INFO  liquibase.database - Set default schema name to public
+2025-04-26 00:46:03.101 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.0.yml
+2025-04-26 00:46:03.112 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.1.yml
+2025-04-26 00:46:03.115 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.2.yml
+2025-04-26 00:46:03.116 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.3.yml
+2025-04-26 00:46:03.119 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.4.yml
+2025-04-26 00:46:03.121 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.5.yml
+2025-04-26 00:46:03.128 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.6.yml
+2025-04-26 00:46:03.130 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.7.yml
+2025-04-26 00:46:03.219 [restartedMain] INFO  liquibase.changelog - Reading from public.databasechangelog
+2025-04-26 00:46:03.297 [restartedMain] INFO  liquibase.ui - Database is up to date, no changesets to execute
+2025-04-26 00:46:03.299 [restartedMain] INFO  liquibase.changelog - Reading from public.databasechangelog
+2025-04-26 00:46:03.310 [restartedMain] INFO  liquibase.util - UPDATE SUMMARY
+2025-04-26 00:46:03.310 [restartedMain] INFO  liquibase.util - Run:                          0
+2025-04-26 00:46:03.310 [restartedMain] INFO  liquibase.util - Previously run:               9
+2025-04-26 00:46:03.310 [restartedMain] INFO  liquibase.util - Filtered out:                 0
+2025-04-26 00:46:03.310 [restartedMain] INFO  liquibase.util - -------------------------------
+2025-04-26 00:46:03.311 [restartedMain] INFO  liquibase.util - Total change sets:            9
+2025-04-26 00:46:03.311 [restartedMain] INFO  liquibase.util - Update summary generated
+2025-04-26 00:46:03.312 [restartedMain] INFO  liquibase.command - Command execution complete
+2025-04-26 00:46:03.410 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-04-26 00:46:03.480 [restartedMain] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.5.Final
+2025-04-26 00:46:03.532 [restartedMain] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-04-26 00:46:03.826 [restartedMain] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-04-26 00:46:03.839 [restartedMain] WARN  org.hibernate.orm.deprecation - HHH90000021: Encountered deprecated setting [hibernate.temp.use_jdbc_metadata_defaults], use [hibernate.boot.allow_jdbc_metadata_access] instead
+2025-04-26 00:46:03.859 [restartedMain] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-04-26 00:46:03.873 [restartedMain] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [undefined/unknown]
+	Database driver: undefined/unknown
+	Database version: 12.0
+	Autocommit mode: undefined/unknown
+	Isolation level: <unknown>
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-04-26 00:46:04.650 [restartedMain] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-04-26 00:46:04.654 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-04-26 00:46:04.877 [restartedMain] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-04-26 00:46:05.395 [restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-04-26 00:46:05.711 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2025-04-26 00:46:05.743 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8081 (http) with context path '/'
+2025-04-26 00:46:05.754 [restartedMain] INFO  o.c.s.SpringLiquibaseApplication - Started SpringLiquibaseApplication in 8.205 seconds (process running for 9.159)
+2025-04-26 00:50:40.218 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-04-26 00:50:40.301 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-04-26 00:50:40.305 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-04-26 00:50:40.308 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-04-26 00:50:40.310 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-04-26 00:50:47.647 [restartedMain] INFO  o.c.s.SpringLiquibaseApplication - Starting SpringLiquibaseApplication using Java 17.0.2 with PID 31968 (C:\Users\Togrul\JaspersoftWorkspace\spring-liquibase\target\classes started by Togrul in C:\Users\Togrul\JaspersoftWorkspace\spring-liquibase)
+2025-04-26 00:50:47.649 [restartedMain] DEBUG o.c.s.SpringLiquibaseApplication - Running with Spring Boot v3.4.2, Spring v6.2.2
+2025-04-26 00:50:47.649 [restartedMain] INFO  o.c.s.SpringLiquibaseApplication - No active profile set, falling back to 1 default profile: "default"
+2025-04-26 00:50:47.684 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-04-26 00:50:47.684 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-04-26 00:50:48.268 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-04-26 00:50:48.323 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 48 ms. Found 2 JPA repository interfaces.
+2025-04-26 00:50:48.911 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8081 (http)
+2025-04-26 00:50:48.937 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-04-26 00:50:48.937 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-04-26 00:50:49.011 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-04-26 00:50:49.013 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1327 ms
+2025-04-26 00:50:49.230 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-04-26 00:50:49.412 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@481c2313
+2025-04-26 00:50:49.414 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-04-26 00:50:49.591 [restartedMain] INFO  liquibase.database - Set default schema name to public
+2025-04-26 00:50:49.941 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.0.yml
+2025-04-26 00:50:49.956 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.1.yml
+2025-04-26 00:50:49.960 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.2.yml
+2025-04-26 00:50:49.964 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.3.yml
+2025-04-26 00:50:49.967 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.4.yml
+2025-04-26 00:50:49.971 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.5.yml
+2025-04-26 00:50:49.982 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.6.yml
+2025-04-26 00:50:49.986 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.7.yml
+2025-04-26 00:50:50.072 [restartedMain] INFO  liquibase.changelog - Reading from public.databasechangelog
+2025-04-26 00:50:50.144 [restartedMain] INFO  liquibase.ui - Database is up to date, no changesets to execute
+2025-04-26 00:50:50.147 [restartedMain] INFO  liquibase.changelog - Reading from public.databasechangelog
+2025-04-26 00:50:50.160 [restartedMain] INFO  liquibase.util - UPDATE SUMMARY
+2025-04-26 00:50:50.160 [restartedMain] INFO  liquibase.util - Run:                          0
+2025-04-26 00:50:50.160 [restartedMain] INFO  liquibase.util - Previously run:               9
+2025-04-26 00:50:50.160 [restartedMain] INFO  liquibase.util - Filtered out:                 0
+2025-04-26 00:50:50.160 [restartedMain] INFO  liquibase.util - -------------------------------
+2025-04-26 00:50:50.160 [restartedMain] INFO  liquibase.util - Total change sets:            9
+2025-04-26 00:50:50.161 [restartedMain] INFO  liquibase.util - Update summary generated
+2025-04-26 00:50:50.162 [restartedMain] INFO  liquibase.command - Command execution complete
+2025-04-26 00:50:50.259 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-04-26 00:50:50.339 [restartedMain] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.5.Final
+2025-04-26 00:50:50.382 [restartedMain] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-04-26 00:50:50.664 [restartedMain] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-04-26 00:50:50.676 [restartedMain] WARN  org.hibernate.orm.deprecation - HHH90000021: Encountered deprecated setting [hibernate.temp.use_jdbc_metadata_defaults], use [hibernate.boot.allow_jdbc_metadata_access] instead
+2025-04-26 00:50:50.700 [restartedMain] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-04-26 00:50:50.716 [restartedMain] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [undefined/unknown]
+	Database driver: undefined/unknown
+	Database version: 12.0
+	Autocommit mode: undefined/unknown
+	Isolation level: <unknown>
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-04-26 00:50:51.481 [restartedMain] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-04-26 00:50:51.484 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-04-26 00:50:51.723 [restartedMain] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-04-26 00:50:52.323 [restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-04-26 00:50:52.747 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2025-04-26 00:50:52.785 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8081 (http) with context path '/'
+2025-04-26 00:50:52.796 [restartedMain] INFO  o.c.s.SpringLiquibaseApplication - Started SpringLiquibaseApplication in 8.278 seconds (process running for 9.263)
+2025-04-26 00:51:14.768 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-04-26 00:51:14.855 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-04-26 00:51:14.859 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-04-26 00:51:14.862 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-04-26 00:51:14.865 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-04-26 00:55:37.239 [restartedMain] INFO  o.c.s.SpringLiquibaseApplication - Starting SpringLiquibaseApplication using Java 17.0.2 with PID 25180 (C:\Users\Togrul\JaspersoftWorkspace\spring-liquibase\target\classes started by Togrul in C:\Users\Togrul\JaspersoftWorkspace\spring-liquibase)
+2025-04-26 00:55:37.240 [restartedMain] DEBUG o.c.s.SpringLiquibaseApplication - Running with Spring Boot v3.4.2, Spring v6.2.2
+2025-04-26 00:55:37.240 [restartedMain] INFO  o.c.s.SpringLiquibaseApplication - No active profile set, falling back to 1 default profile: "default"
+2025-04-26 00:55:37.432 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-04-26 00:55:37.446 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 13 ms. Found 2 JPA repository interfaces.
+2025-04-26 00:55:37.545 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8081 (http)
+2025-04-26 00:55:37.546 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-04-26 00:55:37.546 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-04-26 00:55:37.564 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-04-26 00:55:37.564 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 322 ms
+2025-04-26 00:55:37.592 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Starting...
+2025-04-26 00:55:37.616 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Added connection org.postgresql.jdbc.PgConnection@699d93cc
+2025-04-26 00:55:37.616 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Start completed.
+2025-04-26 00:55:37.624 [restartedMain] INFO  liquibase.database - Set default schema name to public
+2025-04-26 00:55:37.660 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.0.yml
+2025-04-26 00:55:37.715 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.1.yml
+2025-04-26 00:55:37.716 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.2.yml
+2025-04-26 00:55:37.718 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.3.yml
+2025-04-26 00:55:37.719 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.4.yml
+2025-04-26 00:55:37.720 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.5.yml
+2025-04-26 00:55:37.723 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.6.yml
+2025-04-26 00:55:37.725 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.7.yml
+2025-04-26 00:55:37.743 [restartedMain] INFO  liquibase.changelog - Reading from public.databasechangelog
+2025-04-26 00:55:37.775 [restartedMain] INFO  liquibase.ui - Database is up to date, no changesets to execute
+2025-04-26 00:55:37.777 [restartedMain] INFO  liquibase.changelog - Reading from public.databasechangelog
+2025-04-26 00:55:37.783 [restartedMain] INFO  liquibase.util - UPDATE SUMMARY
+2025-04-26 00:55:37.783 [restartedMain] INFO  liquibase.util - Run:                          0
+2025-04-26 00:55:37.783 [restartedMain] INFO  liquibase.util - Previously run:               9
+2025-04-26 00:55:37.783 [restartedMain] INFO  liquibase.util - Filtered out:                 0
+2025-04-26 00:55:37.783 [restartedMain] INFO  liquibase.util - -------------------------------
+2025-04-26 00:55:37.783 [restartedMain] INFO  liquibase.util - Total change sets:            9
+2025-04-26 00:55:37.783 [restartedMain] INFO  liquibase.util - Update summary generated
+2025-04-26 00:55:37.784 [restartedMain] INFO  liquibase.command - Command execution complete
+2025-04-26 00:55:37.802 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-04-26 00:55:37.805 [restartedMain] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-04-26 00:55:37.816 [restartedMain] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-04-26 00:55:37.818 [restartedMain] WARN  org.hibernate.orm.deprecation - HHH90000021: Encountered deprecated setting [hibernate.temp.use_jdbc_metadata_defaults], use [hibernate.boot.allow_jdbc_metadata_access] instead
+2025-04-26 00:55:37.818 [restartedMain] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-04-26 00:55:37.818 [restartedMain] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [undefined/unknown]
+	Database driver: undefined/unknown
+	Database version: 12.0
+	Autocommit mode: undefined/unknown
+	Isolation level: <unknown>
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-04-26 00:55:37.885 [restartedMain] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-04-26 00:55:37.885 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-04-26 00:55:37.999 [restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-04-26 00:55:38.121 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2025-04-26 00:55:38.133 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8081 (http) with context path '/'
+2025-04-26 00:55:38.138 [restartedMain] INFO  o.c.s.SpringLiquibaseApplication - Started SpringLiquibaseApplication in 63.312 seconds (process running for 150.516)
+2025-04-26 00:55:38.140 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+2025-04-26 00:56:42.076 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-04-26 00:56:42.159 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-04-26 00:56:42.161 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-04-26 00:56:42.162 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Shutdown initiated...
+2025-04-26 00:56:42.164 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Shutdown completed.
+2025-04-26 00:58:13.893 [restartedMain] INFO  o.c.s.SpringLiquibaseApplication - Starting SpringLiquibaseApplication using Java 17.0.2 with PID 37840 (C:\Users\Togrul\JaspersoftWorkspace\spring-liquibase\target\classes started by Togrul in C:\Users\Togrul\JaspersoftWorkspace\spring-liquibase)
+2025-04-26 00:58:13.895 [restartedMain] DEBUG o.c.s.SpringLiquibaseApplication - Running with Spring Boot v3.4.2, Spring v6.2.2
+2025-04-26 00:58:13.896 [restartedMain] INFO  o.c.s.SpringLiquibaseApplication - No active profile set, falling back to 1 default profile: "default"
+2025-04-26 00:58:13.933 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-04-26 00:58:13.934 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-04-26 00:58:14.536 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-04-26 00:58:14.602 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 57 ms. Found 2 JPA repository interfaces.
+2025-04-26 00:58:15.113 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8081 (http)
+2025-04-26 00:58:15.126 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-04-26 00:58:15.126 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-04-26 00:58:15.175 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-04-26 00:58:15.175 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1240 ms
+2025-04-26 00:58:15.317 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-04-26 00:58:15.446 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@3018e4a
+2025-04-26 00:58:15.448 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-04-26 00:58:15.597 [restartedMain] INFO  liquibase.database - Set default schema name to public
+2025-04-26 00:58:15.902 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.0.yml
+2025-04-26 00:58:15.913 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.1.yml
+2025-04-26 00:58:15.915 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.2.yml
+2025-04-26 00:58:15.918 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.3.yml
+2025-04-26 00:58:15.920 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.4.yml
+2025-04-26 00:58:15.922 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.5.yml
+2025-04-26 00:58:15.930 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.6.yml
+2025-04-26 00:58:15.935 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.7.yml
+2025-04-26 00:58:16.001 [restartedMain] INFO  liquibase.changelog - Reading from public.databasechangelog
+2025-04-26 00:58:16.059 [restartedMain] INFO  liquibase.ui - Database is up to date, no changesets to execute
+2025-04-26 00:58:16.066 [restartedMain] INFO  liquibase.changelog - Reading from public.databasechangelog
+2025-04-26 00:58:16.077 [restartedMain] INFO  liquibase.util - UPDATE SUMMARY
+2025-04-26 00:58:16.077 [restartedMain] INFO  liquibase.util - Run:                          0
+2025-04-26 00:58:16.078 [restartedMain] INFO  liquibase.util - Previously run:               9
+2025-04-26 00:58:16.078 [restartedMain] INFO  liquibase.util - Filtered out:                 0
+2025-04-26 00:58:16.078 [restartedMain] INFO  liquibase.util - -------------------------------
+2025-04-26 00:58:16.078 [restartedMain] INFO  liquibase.util - Total change sets:            9
+2025-04-26 00:58:16.078 [restartedMain] INFO  liquibase.util - Update summary generated
+2025-04-26 00:58:16.079 [restartedMain] INFO  liquibase.command - Command execution complete
+2025-04-26 00:58:16.166 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-04-26 00:58:16.236 [restartedMain] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.5.Final
+2025-04-26 00:58:16.270 [restartedMain] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-04-26 00:58:16.546 [restartedMain] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-04-26 00:58:16.560 [restartedMain] WARN  org.hibernate.orm.deprecation - HHH90000021: Encountered deprecated setting [hibernate.temp.use_jdbc_metadata_defaults], use [hibernate.boot.allow_jdbc_metadata_access] instead
+2025-04-26 00:58:16.581 [restartedMain] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-04-26 00:58:16.597 [restartedMain] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [undefined/unknown]
+	Database driver: undefined/unknown
+	Database version: 12.0
+	Autocommit mode: undefined/unknown
+	Isolation level: <unknown>
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-04-26 00:58:17.594 [restartedMain] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-04-26 00:58:17.597 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-04-26 00:58:17.890 [restartedMain] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-04-26 00:58:18.527 [restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-04-26 00:58:18.976 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2025-04-26 00:58:19.015 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8081 (http) with context path '/'
+2025-04-26 00:58:19.029 [restartedMain] INFO  o.c.s.SpringLiquibaseApplication - Started SpringLiquibaseApplication in 8.371 seconds (process running for 9.102)
+2025-04-26 01:01:09.103 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-04-26 01:01:09.176 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-04-26 01:01:09.180 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-04-26 01:01:09.183 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-04-26 01:01:09.185 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-04-26 01:01:16.115 [restartedMain] INFO  o.c.s.SpringLiquibaseApplication - Starting SpringLiquibaseApplication using Java 17.0.2 with PID 10352 (C:\Users\Togrul\JaspersoftWorkspace\spring-liquibase\target\classes started by Togrul in C:\Users\Togrul\JaspersoftWorkspace\spring-liquibase)
+2025-04-26 01:01:16.116 [restartedMain] DEBUG o.c.s.SpringLiquibaseApplication - Running with Spring Boot v3.4.2, Spring v6.2.2
+2025-04-26 01:01:16.117 [restartedMain] INFO  o.c.s.SpringLiquibaseApplication - No active profile set, falling back to 1 default profile: "default"
+2025-04-26 01:01:16.147 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-04-26 01:01:16.147 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-04-26 01:01:16.653 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-04-26 01:01:16.706 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 45 ms. Found 2 JPA repository interfaces.
+2025-04-26 01:01:17.165 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8081 (http)
+2025-04-26 01:01:17.175 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-04-26 01:01:17.175 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-04-26 01:01:17.220 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-04-26 01:01:17.221 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1072 ms
+2025-04-26 01:01:17.346 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-04-26 01:01:17.491 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@2b627d7
+2025-04-26 01:01:17.493 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-04-26 01:01:17.648 [restartedMain] INFO  liquibase.database - Set default schema name to public
+2025-04-26 01:01:17.915 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.0.yml
+2025-04-26 01:01:17.925 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.1.yml
+2025-04-26 01:01:17.927 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.2.yml
+2025-04-26 01:01:17.929 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.3.yml
+2025-04-26 01:01:17.931 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.4.yml
+2025-04-26 01:01:17.934 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.5.yml
+2025-04-26 01:01:17.941 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.6.yml
+2025-04-26 01:01:17.944 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.7.yml
+2025-04-26 01:01:18.012 [restartedMain] INFO  liquibase.changelog - Reading from public.databasechangelog
+2025-04-26 01:01:18.065 [restartedMain] INFO  liquibase.ui - Database is up to date, no changesets to execute
+2025-04-26 01:01:18.071 [restartedMain] INFO  liquibase.changelog - Reading from public.databasechangelog
+2025-04-26 01:01:18.079 [restartedMain] INFO  liquibase.util - UPDATE SUMMARY
+2025-04-26 01:01:18.079 [restartedMain] INFO  liquibase.util - Run:                          0
+2025-04-26 01:01:18.079 [restartedMain] INFO  liquibase.util - Previously run:               9
+2025-04-26 01:01:18.079 [restartedMain] INFO  liquibase.util - Filtered out:                 0
+2025-04-26 01:01:18.079 [restartedMain] INFO  liquibase.util - -------------------------------
+2025-04-26 01:01:18.079 [restartedMain] INFO  liquibase.util - Total change sets:            9
+2025-04-26 01:01:18.080 [restartedMain] INFO  liquibase.util - Update summary generated
+2025-04-26 01:01:18.081 [restartedMain] INFO  liquibase.command - Command execution complete
+2025-04-26 01:01:18.158 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-04-26 01:01:18.219 [restartedMain] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.5.Final
+2025-04-26 01:01:18.249 [restartedMain] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-04-26 01:01:18.478 [restartedMain] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-04-26 01:01:18.490 [restartedMain] WARN  org.hibernate.orm.deprecation - HHH90000021: Encountered deprecated setting [hibernate.temp.use_jdbc_metadata_defaults], use [hibernate.boot.allow_jdbc_metadata_access] instead
+2025-04-26 01:01:18.509 [restartedMain] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-04-26 01:01:18.523 [restartedMain] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [undefined/unknown]
+	Database driver: undefined/unknown
+	Database version: 12.0
+	Autocommit mode: undefined/unknown
+	Isolation level: <unknown>
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-04-26 01:01:19.272 [restartedMain] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-04-26 01:01:19.275 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-04-26 01:01:19.457 [restartedMain] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-04-26 01:01:19.865 [restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-04-26 01:01:20.141 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2025-04-26 01:01:20.173 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8081 (http) with context path '/'
+2025-04-26 01:01:20.184 [restartedMain] INFO  o.c.s.SpringLiquibaseApplication - Started SpringLiquibaseApplication in 6.982 seconds (process running for 7.516)
+2025-04-26 01:02:51.197 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-04-26 01:02:51.271 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-04-26 01:02:51.274 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-04-26 01:02:51.277 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-04-26 01:02:51.279 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-04-26 01:11:07.576 [restartedMain] INFO  o.c.s.SpringLiquibaseApplication - Starting SpringLiquibaseApplication using Java 17.0.2 with PID 5356 (C:\Users\Togrul\JaspersoftWorkspace\spring-liquibase\target\classes started by Togrul in C:\Users\Togrul\JaspersoftWorkspace\spring-liquibase)
+2025-04-26 01:11:07.577 [restartedMain] DEBUG o.c.s.SpringLiquibaseApplication - Running with Spring Boot v3.4.2, Spring v6.2.2
+2025-04-26 01:11:07.578 [restartedMain] INFO  o.c.s.SpringLiquibaseApplication - No active profile set, falling back to 1 default profile: "default"
+2025-04-26 01:11:07.608 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-04-26 01:11:07.608 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-04-26 01:11:08.083 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-04-26 01:11:08.131 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 42 ms. Found 2 JPA repository interfaces.
+2025-04-26 01:11:08.556 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8081 (http)
+2025-04-26 01:11:08.566 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-04-26 01:11:08.566 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-04-26 01:11:08.610 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-04-26 01:11:08.610 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1001 ms
+2025-04-26 01:11:08.738 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-04-26 01:11:08.857 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@32de1f87
+2025-04-26 01:11:08.858 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-04-26 01:11:08.981 [restartedMain] INFO  liquibase.database - Set default schema name to public
+2025-04-26 01:11:09.246 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.0.yml
+2025-04-26 01:11:09.255 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.1.yml
+2025-04-26 01:11:09.257 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.2.yml
+2025-04-26 01:11:09.259 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.3.yml
+2025-04-26 01:11:09.262 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.4.yml
+2025-04-26 01:11:09.264 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.5.yml
+2025-04-26 01:11:09.269 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.6.yml
+2025-04-26 01:11:09.271 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.7.yml
+2025-04-26 01:11:09.330 [restartedMain] INFO  liquibase.changelog - Reading from public.databasechangelog
+2025-04-26 01:11:09.388 [restartedMain] INFO  liquibase.ui - Database is up to date, no changesets to execute
+2025-04-26 01:11:09.390 [restartedMain] INFO  liquibase.changelog - Reading from public.databasechangelog
+2025-04-26 01:11:09.399 [restartedMain] INFO  liquibase.util - UPDATE SUMMARY
+2025-04-26 01:11:09.399 [restartedMain] INFO  liquibase.util - Run:                          0
+2025-04-26 01:11:09.399 [restartedMain] INFO  liquibase.util - Previously run:               9
+2025-04-26 01:11:09.399 [restartedMain] INFO  liquibase.util - Filtered out:                 0
+2025-04-26 01:11:09.399 [restartedMain] INFO  liquibase.util - -------------------------------
+2025-04-26 01:11:09.399 [restartedMain] INFO  liquibase.util - Total change sets:            9
+2025-04-26 01:11:09.400 [restartedMain] INFO  liquibase.util - Update summary generated
+2025-04-26 01:11:09.401 [restartedMain] INFO  liquibase.command - Command execution complete
+2025-04-26 01:11:09.468 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-04-26 01:11:09.511 [restartedMain] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.5.Final
+2025-04-26 01:11:09.534 [restartedMain] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-04-26 01:11:09.733 [restartedMain] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-04-26 01:11:09.744 [restartedMain] WARN  org.hibernate.orm.deprecation - HHH90000021: Encountered deprecated setting [hibernate.temp.use_jdbc_metadata_defaults], use [hibernate.boot.allow_jdbc_metadata_access] instead
+2025-04-26 01:11:09.757 [restartedMain] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-04-26 01:11:09.769 [restartedMain] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [undefined/unknown]
+	Database driver: undefined/unknown
+	Database version: 12.0
+	Autocommit mode: undefined/unknown
+	Isolation level: <unknown>
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-04-26 01:11:10.405 [restartedMain] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-04-26 01:11:10.407 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-04-26 01:11:10.594 [restartedMain] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-04-26 01:11:10.988 [restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-04-26 01:11:11.272 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2025-04-26 01:11:11.300 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8081 (http) with context path '/'
+2025-04-26 01:11:11.310 [restartedMain] INFO  o.c.s.SpringLiquibaseApplication - Started SpringLiquibaseApplication in 6.582 seconds (process running for 7.044)
+2025-04-26 01:14:43.328 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-04-26 01:14:43.412 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-04-26 01:14:43.420 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-04-26 01:14:43.427 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-04-26 01:14:43.431 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-04-26 01:14:49.103 [restartedMain] INFO  o.c.s.SpringLiquibaseApplication - Starting SpringLiquibaseApplication using Java 17.0.2 with PID 25364 (C:\Users\Togrul\JaspersoftWorkspace\spring-liquibase\target\classes started by Togrul in C:\Users\Togrul\JaspersoftWorkspace\spring-liquibase)
+2025-04-26 01:14:49.106 [restartedMain] DEBUG o.c.s.SpringLiquibaseApplication - Running with Spring Boot v3.4.2, Spring v6.2.2
+2025-04-26 01:14:49.106 [restartedMain] INFO  o.c.s.SpringLiquibaseApplication - No active profile set, falling back to 1 default profile: "default"
+2025-04-26 01:14:49.156 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-04-26 01:14:49.156 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-04-26 01:14:49.862 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-04-26 01:14:49.939 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 67 ms. Found 2 JPA repository interfaces.
+2025-04-26 01:14:50.630 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-04-26 01:14:50.648 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-04-26 01:14:50.649 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-04-26 01:14:50.708 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-04-26 01:14:50.709 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1552 ms
+2025-04-26 01:14:50.931 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-04-26 01:14:51.386 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@59cc4add
+2025-04-26 01:14:51.387 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-04-26 01:14:51.880 [restartedMain] INFO  liquibase.database - Set default schema name to public
+2025-04-26 01:14:52.264 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.0.yml
+2025-04-26 01:14:52.314 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.1.yml
+2025-04-26 01:14:52.326 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.2.yml
+2025-04-26 01:14:52.330 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.3.yml
+2025-04-26 01:14:52.334 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.4.yml
+2025-04-26 01:14:52.342 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.5.yml
+2025-04-26 01:14:52.355 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.6.yml
+2025-04-26 01:14:52.358 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.7.yml
+2025-04-26 01:14:52.474 [restartedMain] INFO  liquibase.changelog - Reading from public.databasechangelog
+2025-04-26 01:14:52.566 [restartedMain] INFO  liquibase.ui - Database is up to date, no changesets to execute
+2025-04-26 01:14:52.568 [restartedMain] INFO  liquibase.changelog - Reading from public.databasechangelog
+2025-04-26 01:14:52.580 [restartedMain] INFO  liquibase.util - UPDATE SUMMARY
+2025-04-26 01:14:52.581 [restartedMain] INFO  liquibase.util - Run:                          0
+2025-04-26 01:14:52.581 [restartedMain] INFO  liquibase.util - Previously run:               9
+2025-04-26 01:14:52.581 [restartedMain] INFO  liquibase.util - Filtered out:                 0
+2025-04-26 01:14:52.581 [restartedMain] INFO  liquibase.util - -------------------------------
+2025-04-26 01:14:52.581 [restartedMain] INFO  liquibase.util - Total change sets:            9
+2025-04-26 01:14:52.582 [restartedMain] INFO  liquibase.util - Update summary generated
+2025-04-26 01:14:52.583 [restartedMain] INFO  liquibase.command - Command execution complete
+2025-04-26 01:14:52.687 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-04-26 01:14:52.779 [restartedMain] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.5.Final
+2025-04-26 01:14:52.842 [restartedMain] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-04-26 01:14:53.309 [restartedMain] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-04-26 01:14:53.325 [restartedMain] WARN  org.hibernate.orm.deprecation - HHH90000021: Encountered deprecated setting [hibernate.temp.use_jdbc_metadata_defaults], use [hibernate.boot.allow_jdbc_metadata_access] instead
+2025-04-26 01:14:53.363 [restartedMain] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-04-26 01:14:53.387 [restartedMain] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [undefined/unknown]
+	Database driver: undefined/unknown
+	Database version: 12.0
+	Autocommit mode: undefined/unknown
+	Isolation level: <unknown>
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-04-26 01:14:54.478 [restartedMain] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-04-26 01:14:54.481 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-04-26 01:14:54.779 [restartedMain] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-04-26 01:14:55.394 [restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-04-26 01:14:55.781 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2025-04-26 01:14:55.819 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-04-26 01:14:55.835 [restartedMain] INFO  o.c.s.SpringLiquibaseApplication - Started SpringLiquibaseApplication in 9.928 seconds (process running for 10.631)
+2025-04-26 01:16:43.761 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-04-26 01:16:43.867 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-04-26 01:16:43.873 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-04-26 01:16:43.878 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-04-26 01:16:43.881 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-04-26 01:16:53.250 [restartedMain] INFO  o.c.s.SpringLiquibaseApplication - Starting SpringLiquibaseApplication using Java 17.0.2 with PID 8076 (C:\Users\Togrul\JaspersoftWorkspace\spring-liquibase\target\classes started by Togrul in C:\Users\Togrul\JaspersoftWorkspace\spring-liquibase)
+2025-04-26 01:16:53.252 [restartedMain] DEBUG o.c.s.SpringLiquibaseApplication - Running with Spring Boot v3.4.2, Spring v6.2.2
+2025-04-26 01:16:53.253 [restartedMain] INFO  o.c.s.SpringLiquibaseApplication - No active profile set, falling back to 1 default profile: "default"
+2025-04-26 01:16:53.291 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-04-26 01:16:53.291 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-04-26 01:16:53.996 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-04-26 01:16:54.066 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 62 ms. Found 2 JPA repository interfaces.
+2025-04-26 01:16:54.770 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-04-26 01:16:54.786 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-04-26 01:16:54.786 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-04-26 01:16:54.851 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-04-26 01:16:54.853 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1561 ms
+2025-04-26 01:16:55.039 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-04-26 01:16:55.219 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@736066b3
+2025-04-26 01:16:55.221 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-04-26 01:16:55.433 [restartedMain] INFO  liquibase.database - Set default schema name to public
+2025-04-26 01:16:55.833 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.0.yml
+2025-04-26 01:16:55.850 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.1.yml
+2025-04-26 01:16:55.854 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.2.yml
+2025-04-26 01:16:55.857 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.3.yml
+2025-04-26 01:16:55.860 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.4.yml
+2025-04-26 01:16:55.865 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.5.yml
+2025-04-26 01:16:55.878 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.6.yml
+2025-04-26 01:16:55.881 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.7.yml
+2025-04-26 01:16:55.953 [restartedMain] INFO  liquibase.changelog - Reading from public.databasechangelog
+2025-04-26 01:16:56.016 [restartedMain] INFO  liquibase.ui - Database is up to date, no changesets to execute
+2025-04-26 01:16:56.018 [restartedMain] INFO  liquibase.changelog - Reading from public.databasechangelog
+2025-04-26 01:16:56.028 [restartedMain] INFO  liquibase.util - UPDATE SUMMARY
+2025-04-26 01:16:56.029 [restartedMain] INFO  liquibase.util - Run:                          0
+2025-04-26 01:16:56.029 [restartedMain] INFO  liquibase.util - Previously run:               9
+2025-04-26 01:16:56.029 [restartedMain] INFO  liquibase.util - Filtered out:                 0
+2025-04-26 01:16:56.029 [restartedMain] INFO  liquibase.util - -------------------------------
+2025-04-26 01:16:56.029 [restartedMain] INFO  liquibase.util - Total change sets:            9
+2025-04-26 01:16:56.030 [restartedMain] INFO  liquibase.util - Update summary generated
+2025-04-26 01:16:56.031 [restartedMain] INFO  liquibase.command - Command execution complete
+2025-04-26 01:16:56.134 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-04-26 01:16:56.200 [restartedMain] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.5.Final
+2025-04-26 01:16:56.241 [restartedMain] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-04-26 01:16:56.553 [restartedMain] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-04-26 01:16:56.567 [restartedMain] WARN  org.hibernate.orm.deprecation - HHH90000021: Encountered deprecated setting [hibernate.temp.use_jdbc_metadata_defaults], use [hibernate.boot.allow_jdbc_metadata_access] instead
+2025-04-26 01:16:56.587 [restartedMain] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-04-26 01:16:56.603 [restartedMain] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [undefined/unknown]
+	Database driver: undefined/unknown
+	Database version: 12.0
+	Autocommit mode: undefined/unknown
+	Isolation level: <unknown>
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-04-26 01:16:57.641 [restartedMain] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-04-26 01:16:57.645 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-04-26 01:16:57.927 [restartedMain] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-04-26 01:16:58.587 [restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-04-26 01:16:59.065 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2025-04-26 01:16:59.107 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-04-26 01:16:59.119 [restartedMain] INFO  o.c.s.SpringLiquibaseApplication - Started SpringLiquibaseApplication in 8.956 seconds (process running for 9.649)
+2025-04-26 01:17:39.478 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-04-26 01:17:39.479 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-04-26 01:17:39.480 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2025-04-26 01:17:39.518 [http-nio-8080-exec-1] INFO  o.c.s.interceptor.LogInterceptor - Request started - Method: POST, URI: /v1/cards, Masked CardNumber: ******
+2025-04-26 01:17:39.712 [http-nio-8080-exec-1] INFO  o.c.s.service.CardServiceImpl - ActionLog.createCard.start create card
+2025-04-26 01:17:39.983 [http-nio-8080-exec-1] INFO  o.c.s.service.CardServiceImpl - ActionLog.createCard.success create card
+2025-04-26 01:17:40.014 [http-nio-8080-exec-1] INFO  o.c.s.service.CardServiceImpl - ActionLog.getCard.start with card number: ****12628328
+2025-04-26 01:17:40.039 [http-nio-8080-exec-1] INFO  o.c.s.service.CardServiceImpl - ActionLog.getCard.success with card number: ****12628328
+2025-04-26 01:17:40.105 [http-nio-8080-exec-1] INFO  o.c.s.interceptor.LogInterceptor - Request finished - Method: POST, URI: /v1/cards, Status: 201, Duration: 587 ms
+2025-04-26 01:19:27.303 [http-nio-8080-exec-4] INFO  o.c.s.interceptor.LogInterceptor - Request started - Method: POST, URI: /v1/cards, Masked CardNumber: ******
+2025-04-26 01:19:27.306 [http-nio-8080-exec-4] INFO  o.c.s.service.CardServiceImpl - ActionLog.createCard.start create card
+2025-04-26 01:19:27.314 [http-nio-8080-exec-4] INFO  o.c.s.service.CardServiceImpl - ActionLog.createCard.success create card
+2025-04-26 01:19:27.317 [http-nio-8080-exec-4] INFO  o.c.s.service.CardServiceImpl - ActionLog.getCard.start with card number: ****99964532
+2025-04-26 01:19:27.320 [http-nio-8080-exec-4] INFO  o.c.s.service.CardServiceImpl - ActionLog.getCard.success with card number: ****99964532
+2025-04-26 01:19:27.322 [http-nio-8080-exec-4] INFO  o.c.s.interceptor.LogInterceptor - Request finished - Method: POST, URI: /v1/cards, Status: 201, Duration: 19 ms
+2025-04-26 01:19:59.944 [http-nio-8080-exec-6] INFO  o.c.s.interceptor.LogInterceptor - Request started - Method: POST, URI: /v1/cards, Masked CardNumber: ******
+2025-04-26 01:19:59.947 [http-nio-8080-exec-6] INFO  o.c.s.service.CardServiceImpl - ActionLog.createCard.start create card
+2025-04-26 01:19:59.954 [http-nio-8080-exec-6] INFO  o.c.s.service.CardServiceImpl - ActionLog.createCard.success create card
+2025-04-26 01:19:59.956 [http-nio-8080-exec-6] INFO  o.c.s.service.CardServiceImpl - ActionLog.getCard.start with card number: ****11751833
+2025-04-26 01:19:59.959 [http-nio-8080-exec-6] INFO  o.c.s.service.CardServiceImpl - ActionLog.getCard.success with card number: ****11751833
+2025-04-26 01:19:59.961 [http-nio-8080-exec-6] INFO  o.c.s.interceptor.LogInterceptor - Request finished - Method: POST, URI: /v1/cards, Status: 201, Duration: 17 ms
+2025-04-26 01:21:55.076 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-04-26 01:21:55.179 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-04-26 01:21:55.193 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-04-26 01:21:55.224 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-04-26 01:21:55.234 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-04-26 01:22:08.154 [restartedMain] INFO  o.c.s.SpringLiquibaseApplication - Starting SpringLiquibaseApplication using Java 17.0.2 with PID 29268 (C:\Users\Togrul\JaspersoftWorkspace\spring-liquibase\target\classes started by Togrul in C:\Users\Togrul\JaspersoftWorkspace\spring-liquibase)
+2025-04-26 01:22:08.157 [restartedMain] DEBUG o.c.s.SpringLiquibaseApplication - Running with Spring Boot v3.4.2, Spring v6.2.2
+2025-04-26 01:22:08.158 [restartedMain] INFO  o.c.s.SpringLiquibaseApplication - No active profile set, falling back to 1 default profile: "default"
+2025-04-26 01:22:08.198 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-04-26 01:22:08.198 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-04-26 01:22:08.887 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-04-26 01:22:08.955 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 59 ms. Found 2 JPA repository interfaces.
+2025-04-26 01:22:09.473 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-04-26 01:22:09.491 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-04-26 01:22:09.491 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-04-26 01:22:09.539 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-04-26 01:22:09.541 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1339 ms
+2025-04-26 01:22:09.736 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-04-26 01:22:10.061 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@41920154
+2025-04-26 01:22:10.064 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-04-26 01:22:10.574 [restartedMain] INFO  liquibase.database - Set default schema name to public
+2025-04-26 01:22:11.389 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.0.yml
+2025-04-26 01:22:11.409 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.1.yml
+2025-04-26 01:22:11.413 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.2.yml
+2025-04-26 01:22:11.415 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.3.yml
+2025-04-26 01:22:11.419 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.4.yml
+2025-04-26 01:22:11.422 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.5.yml
+2025-04-26 01:22:11.431 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.6.yml
+2025-04-26 01:22:11.434 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.7.yml
+2025-04-26 01:22:11.508 [restartedMain] INFO  liquibase.changelog - Reading from public.databasechangelog
+2025-04-26 01:22:11.677 [restartedMain] INFO  liquibase.ui - Database is up to date, no changesets to execute
+2025-04-26 01:22:11.699 [restartedMain] INFO  liquibase.changelog - Reading from public.databasechangelog
+2025-04-26 01:22:11.737 [restartedMain] INFO  liquibase.util - UPDATE SUMMARY
+2025-04-26 01:22:11.738 [restartedMain] INFO  liquibase.util - Run:                          0
+2025-04-26 01:22:11.738 [restartedMain] INFO  liquibase.util - Previously run:               9
+2025-04-26 01:22:11.738 [restartedMain] INFO  liquibase.util - Filtered out:                 0
+2025-04-26 01:22:11.738 [restartedMain] INFO  liquibase.util - -------------------------------
+2025-04-26 01:22:11.738 [restartedMain] INFO  liquibase.util - Total change sets:            9
+2025-04-26 01:22:11.739 [restartedMain] INFO  liquibase.util - Update summary generated
+2025-04-26 01:22:11.740 [restartedMain] INFO  liquibase.command - Command execution complete
+2025-04-26 01:22:11.926 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-04-26 01:22:12.037 [restartedMain] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.5.Final
+2025-04-26 01:22:12.096 [restartedMain] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-04-26 01:22:12.608 [restartedMain] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-04-26 01:22:12.633 [restartedMain] WARN  org.hibernate.orm.deprecation - HHH90000021: Encountered deprecated setting [hibernate.temp.use_jdbc_metadata_defaults], use [hibernate.boot.allow_jdbc_metadata_access] instead
+2025-04-26 01:22:12.671 [restartedMain] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-04-26 01:22:12.696 [restartedMain] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [undefined/unknown]
+	Database driver: undefined/unknown
+	Database version: 12.0
+	Autocommit mode: undefined/unknown
+	Isolation level: <unknown>
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-04-26 01:22:14.104 [restartedMain] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-04-26 01:22:14.108 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-04-26 01:22:14.449 [restartedMain] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-04-26 01:22:14.971 [restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-04-26 01:22:15.417 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2025-04-26 01:22:15.507 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-04-26 01:22:15.539 [restartedMain] INFO  o.c.s.SpringLiquibaseApplication - Started SpringLiquibaseApplication in 8.281 seconds (process running for 8.967)
+2025-04-26 01:24:15.349 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-04-26 01:24:15.428 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-04-26 01:24:15.432 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-04-26 01:24:15.435 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-04-26 01:24:15.437 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-04-26 01:24:18.290 [restartedMain] INFO  o.c.s.SpringLiquibaseApplication - Starting SpringLiquibaseApplication using Java 17.0.2 with PID 29248 (C:\Users\Togrul\JaspersoftWorkspace\spring-liquibase\target\classes started by Togrul in C:\Users\Togrul\JaspersoftWorkspace\spring-liquibase)
+2025-04-26 01:24:18.294 [restartedMain] DEBUG o.c.s.SpringLiquibaseApplication - Running with Spring Boot v3.4.2, Spring v6.2.2
+2025-04-26 01:24:18.295 [restartedMain] INFO  o.c.s.SpringLiquibaseApplication - No active profile set, falling back to 1 default profile: "default"
+2025-04-26 01:24:18.336 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-04-26 01:24:18.337 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-04-26 01:24:18.983 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-04-26 01:24:19.042 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 50 ms. Found 2 JPA repository interfaces.
+2025-04-26 01:24:19.505 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-04-26 01:24:19.517 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-04-26 01:24:19.517 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-04-26 01:24:19.599 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-04-26 01:24:19.603 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1264 ms
+2025-04-26 01:24:19.876 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-04-26 01:24:20.127 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@2628d1bd
+2025-04-26 01:24:20.129 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-04-26 01:24:20.366 [restartedMain] INFO  liquibase.database - Set default schema name to public
+2025-04-26 01:24:20.929 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.0.yml
+2025-04-26 01:24:20.943 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.1.yml
+2025-04-26 01:24:20.946 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.2.yml
+2025-04-26 01:24:20.949 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.3.yml
+2025-04-26 01:24:20.953 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.4.yml
+2025-04-26 01:24:20.957 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.5.yml
+2025-04-26 01:24:20.966 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.6.yml
+2025-04-26 01:24:20.970 [restartedMain] INFO  liquibase.changelog - Reading resource: liquibase/1.0/changelog-1.0.7.yml
+2025-04-26 01:24:21.042 [restartedMain] INFO  liquibase.changelog - Reading from public.databasechangelog
+2025-04-26 01:24:21.280 [restartedMain] INFO  liquibase.ui - Database is up to date, no changesets to execute
+2025-04-26 01:24:21.295 [restartedMain] INFO  liquibase.changelog - Reading from public.databasechangelog
+2025-04-26 01:24:21.326 [restartedMain] INFO  liquibase.util - UPDATE SUMMARY
+2025-04-26 01:24:21.326 [restartedMain] INFO  liquibase.util - Run:                          0
+2025-04-26 01:24:21.326 [restartedMain] INFO  liquibase.util - Previously run:               9
+2025-04-26 01:24:21.327 [restartedMain] INFO  liquibase.util - Filtered out:                 0
+2025-04-26 01:24:21.327 [restartedMain] INFO  liquibase.util - -------------------------------
+2025-04-26 01:24:21.327 [restartedMain] INFO  liquibase.util - Total change sets:            9
+2025-04-26 01:24:21.328 [restartedMain] INFO  liquibase.util - Update summary generated
+2025-04-26 01:24:21.330 [restartedMain] INFO  liquibase.command - Command execution complete
+2025-04-26 01:24:21.560 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-04-26 01:24:21.726 [restartedMain] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.5.Final
+2025-04-26 01:24:21.813 [restartedMain] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-04-26 01:24:22.195 [restartedMain] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-04-26 01:24:22.217 [restartedMain] WARN  org.hibernate.orm.deprecation - HHH90000021: Encountered deprecated setting [hibernate.temp.use_jdbc_metadata_defaults], use [hibernate.boot.allow_jdbc_metadata_access] instead
+2025-04-26 01:24:22.269 [restartedMain] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-04-26 01:24:22.305 [restartedMain] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [undefined/unknown]
+	Database driver: undefined/unknown
+	Database version: 12.0
+	Autocommit mode: undefined/unknown
+	Isolation level: <unknown>
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-04-26 01:24:23.659 [restartedMain] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-04-26 01:24:23.664 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-04-26 01:24:23.974 [restartedMain] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-04-26 01:24:24.590 [restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-04-26 01:24:25.139 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2025-04-26 01:24:25.175 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-04-26 01:24:25.186 [restartedMain] INFO  o.c.s.SpringLiquibaseApplication - Started SpringLiquibaseApplication in 7.686 seconds (process running for 8.476)
+2025-04-26 01:24:26.004 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-04-26 01:24:26.004 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-04-26 01:24:26.006 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2025-04-26 01:24:26.037 [http-nio-8080-exec-2] INFO  o.c.s.interceptor.LogInterceptor - Request started - Method: POST, URI: /v1/cards, Masked CardNumber: ******
+2025-04-26 01:24:26.201 [http-nio-8080-exec-2] INFO  o.c.s.service.CardServiceImpl - ActionLog.createCard.start create card
+2025-04-26 01:24:26.358 [http-nio-8080-exec-2] INFO  o.c.s.service.CardServiceImpl - ActionLog.createCard.success create card
+2025-04-26 01:24:26.377 [http-nio-8080-exec-2] INFO  o.c.s.service.CardServiceImpl - ActionLog.getCard.start with card number: ****98090157
+2025-04-26 01:24:26.404 [http-nio-8080-exec-2] INFO  o.c.s.service.CardServiceImpl - ActionLog.getCard.success with card number: ****98090157
+2025-04-26 01:24:26.450 [http-nio-8080-exec-2] INFO  o.c.s.interceptor.LogInterceptor - Request finished - Method: POST, URI: /v1/cards, Status: 201, Duration: 413 ms
+2025-04-26 01:26:19.126 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-04-26 01:26:19.207 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-04-26 01:26:19.211 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-04-26 01:26:19.215 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-04-26 01:26:19.217 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
