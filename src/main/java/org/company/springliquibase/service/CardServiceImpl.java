@@ -10,6 +10,7 @@ import org.company.springliquibase.enums.CardBrand;
 import org.company.springliquibase.enums.CardStatus;
 import org.company.springliquibase.enums.CardType;
 import org.company.springliquibase.exception.*;
+import org.company.springliquibase.logging.Loggable;
 import org.company.springliquibase.mapper.CardMapper;
 import org.company.springliquibase.model.criteria.CardCriteria;
 import org.company.springliquibase.model.criteria.PageCriteria;
@@ -50,11 +51,11 @@ public class CardServiceImpl implements CardService {
     private static final String CREATE_CARD_ACTION = "createCard";
 
     @Override
+    @Loggable(action = "createCard") // Action ilə log yazın
     @Transactional
     public CardResponse createCard(CardRequest request) {
         try {
-            log.info("ActionLog.createCard.start create card");
-
+            // əvvəlki logları Logging Aspect idarə edəcək
             if (!StringUtils.hasText(request.getCardNumber())) {
                 request.setCardNumber(ValidationUtils.generateValidCardNumber(CardBrand.valueOf(request.getCardBrand())));
             }
@@ -75,9 +76,8 @@ public class CardServiceImpl implements CardService {
             CardEntity card = buildCardEntity(request);
             CardEntity savedCard = cardRepository.save(card); // Save and keep reference
             CardResponse cardResponse = buildCardResponse(savedCard); // Hazır cavab yarat
-            log.info("ActionLog.createCard.success create card");
-            LoggingUtil.logApiResponse(CREATE_CARD_ACTION, cardResponse);
 
+            LoggingUtil.logApiResponse(CREATE_CARD_ACTION, cardResponse);
             return cardResponse;
 
         } catch (IllegalArgumentException e) {
@@ -95,7 +95,9 @@ public class CardServiceImpl implements CardService {
     }
 
 
+
     @Override
+    @Loggable(action = "getCardById")
     public CardResponse getCard(Long cardId) {
         log.info("ActionLog.getCard.start with id: {}", cardId);
         CardEntity card = fetchCardIfExist(cardId);
@@ -107,6 +109,7 @@ public class CardServiceImpl implements CardService {
     }
 
     @Override
+    @Loggable(action = "getCardByNumber")
     public CardResponse getCard(String cardNumber) {
         log.info("ActionLog.getCard.start with card number: {}", maskCardNumber(cardNumber)); // Masked here
         CardEntity card = fetchCardIfExist(cardNumber);
@@ -135,6 +138,7 @@ public class CardServiceImpl implements CardService {
 
 
     @Override
+    @Loggable(action = "getAllCards")
     public List<CardResponse> getCards() {
         log.info("ActionLog.getCards.start fetching all cards");
         List<CardEntity> cards = cardRepository.findAllByStatusNot(CardStatus.DELETED);
@@ -145,6 +149,7 @@ public class CardServiceImpl implements CardService {
 
 
     @Override
+    @Loggable(action = "deleteCard")
     public void deleteCard(Long cardId) {
         log.info("ActionLog.deleteCard.start with id: {}", cardId);
         CardEntity card = fetchCardIfExist(cardId);
@@ -154,6 +159,7 @@ public class CardServiceImpl implements CardService {
     }
 
     @Override
+    @Loggable(action = "updateCard")
     @Transactional
     public void updateCard(Long cardId, CardRequest request) {
         log.info("ActionLog.updateCard.start with id: {}", cardId);
@@ -182,6 +188,7 @@ public class CardServiceImpl implements CardService {
     }
 
     @Transactional
+    @Loggable(action = "increaseCardBalances")
     @Override
     public void increaseCardBalances() {
         cardRepository.increaseActiveCardBalances();
@@ -189,6 +196,7 @@ public class CardServiceImpl implements CardService {
 
     @Override
     @Transactional
+    @Loggable(action = "increaseCardBalancesWithJpa")
     public void increaseCardBalancesWithJpa() {
         int batchSize = 50;
         List<CardEntity> cards = cardRepository.findAll();

@@ -1,0 +1,10 @@
+databaseChangeLog:
+  - changeSet:
+      id: ModifyBalanceColumnPrecisionScale
+      author: Togrul Jafarov
+      changes:
+        - modifyDataType:
+            tableName: cards
+            columnName: balance
+            newDataType: numeric(18, 2)
+            remarks: "Balance column with increased precision and scale"
