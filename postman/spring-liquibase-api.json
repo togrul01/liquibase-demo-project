@@ -1,0 +1,174 @@
+{
+  "info": {
+    "name": "Spring Liquibase API",
+    "description": "API collection for Spring Liquibase project",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Card Management",
+      "item": [
+        {
+          "name": "Create Card",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/cards",
+              "host": ["{{baseUrl}}"],
+              "path": ["v1", "cards"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"cardNumber\": \"4111111111111111\",\n    \"cardholderName\": \"John Doe\",\n    \"expiryDate\": \"2025-12-31\",\n    \"cvv\": \"123\",\n    \"cardType\": \"CREDIT\",\n    \"cardBrand\": \"VISA\",\n    \"issueDate\": \"2024-01-01\",\n    \"balance\": 1000.00\n}"
+            }
+          }
+        },
+        {
+          "name": "Get Card by ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/v1/cards/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["v1", "cards", "1"]
+            }
+          }
+        },
+        {
+          "name": "Get All Cards",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/v1/cards",
+              "host": ["{{baseUrl}}"],
+              "path": ["v1", "cards"]
+            }
+          }
+        },
+        {
+          "name": "Get Paginated Cards",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/v1/cards/getCards?page=0&count=10",
+              "host": ["{{baseUrl}}"],
+              "path": ["v1", "cards", "getCards"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "count",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Card",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/cards/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["v1", "cards", "1"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"cardNumber\": \"4111111111111111\",\n    \"cardholderName\": \"John Doe Updated\",\n    \"expiryDate\": \"2025-12-31\",\n    \"cvv\": \"123\",\n    \"cardType\": \"CREDIT\",\n    \"cardBrand\": \"VISA\",\n    \"issueDate\": \"2024-01-01\",\n    \"balance\": 2000.00\n}"
+            }
+          }
+        },
+        {
+          "name": "Delete Card",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{baseUrl}}/v1/cards/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["v1", "cards", "1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "User Management",
+      "item": [
+        {
+          "name": "Create User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/users",
+              "host": ["{{baseUrl}}"],
+              "path": ["v1", "users"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"userName\": \"johndoe\",\n    \"age\": 30,\n    \"birthPlace\": \"New York\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Get User by ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/v1/users/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["v1", "users", "1"]
+            }
+          }
+        },
+        {
+          "name": "Get Paginated Users",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/v1/users/getUsers?page=0&count=10",
+              "host": ["{{baseUrl}}"],
+              "path": ["v1", "users", "getUsers"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "count",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080"
+    }
+  ]
+} 
