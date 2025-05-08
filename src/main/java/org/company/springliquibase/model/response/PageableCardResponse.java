@@ -4,24 +4,17 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import javax.smartcardio.Card;
 import java.util.List;
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public class PageableCardResponse {
     private List<CardResponse> cardList;
-
-    private Integer pageNumber;
-
-    private Integer pageSize;
-
-    private Integer lastPageNumber;
-
-    private Long totalElements;
-
+    private int pageNumber;
+    private int pageSize;
+    private long totalElements;
+    private int lastPageNumber;
     private boolean hasNextPage;
 }

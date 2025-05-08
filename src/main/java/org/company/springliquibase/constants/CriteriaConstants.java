@@ -1,24 +1,17 @@
 package org.company.springliquibase.constants;
 
-
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
 @Getter
+@RequiredArgsConstructor
 public enum CriteriaConstants {
-    AGE("age"),
-    BIRTH_PLACE("birthPlace"),
-    CARD_NAME("cardName"),
-    CARD_NUMBER("cardNumber"),
     PAGE_DEFAULT_VALUE(0),
     COUNT_DEFAULT_VALUE(10),
-    EXPIRATION_DATE_FROM("expirationDateFrom"),
-    EXPIRATION_DATE_TO("expirationDateTo");
+    AGE("age"),
+    BIRTH_PLACE("birthPlace");
 
     private final Object value;
-
-    CriteriaConstants(Object value) {
-        this.value = value;
-    }
 
     public String getStringValue() {
         if (value instanceof String stringValue) {

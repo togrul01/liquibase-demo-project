@@ -37,6 +37,9 @@ import static org.company.springliquibase.enums.CardStatus.*;
 import static org.company.springliquibase.mapper.CardMapper.*;
 import static org.company.springliquibase.util.LocalizationUtil.getLocalizedMessageByKey;
 import static org.company.springliquibase.util.ValidationUtils.calculateExpiryDate;
+import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 @Service
 @RequiredArgsConstructor
@@ -77,6 +80,10 @@ public class CardServiceImpl implements CardService {
             CardEntity savedCard = cardRepository.save(card); // Save and keep reference
             CardResponse cardResponse = buildCardResponse(savedCard); // Hazır cavab yarat
 
+            HttpServletRequest currentRequest = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
+            currentRequest.setAttribute("cardResponse", cardResponse);
+
+
             LoggingUtil.logApiResponse(CREATE_CARD_ACTION, cardResponse);
             return cardResponse;
 
@@ -93,7 +100,6 @@ public class CardServiceImpl implements CardService {
             throw new RuntimeException(errorMessage);
         }
     }
-
 
 
     @Override
@@ -199,18 +205,24 @@ public class CardServiceImpl implements CardService {
     @Loggable(action = "increaseCardBalancesWithJpa")
     public void increaseCardBalancesWithJpa() {
         int batchSize = 50;
-        List<CardEntity> cards = cardRepository.findAll();
+        List<CardEntity> cards = cardRepository.findAllByStatusNot(CardStatus.DELETED);
 
         for (int i = 0; i < cards.size(); i++) {
             CardEntity card = cards.get(i);
-            BigDecimal percentage = new BigDecimal("0.05");
-            BigDecimal currentBalance = card.getBalance();
-            BigDecimal increaseAmount = currentBalance.multiply(percentage);
-            card.setBalance(currentBalance.add(increaseAmount));
+            try {
+                BigDecimal newBalance = card.getBalance().multiply(new BigDecimal("1.05"));
+                if (newBalance.compareTo(new BigDecimal("9999999999999.99")) > 0) {
+                    log.warn("Balance would exceed maximum allowed value for card: {}", card.getCardNumber());
+                    continue;
+                }
+                card.setBalance(newBalance);
 
-            if (i > 0 && i % batchSize == 0) {
-                entityManager.flush(); // Deyişiklikleri database gönder
-                entityManager.clear(); // memorydeki  obyektleri temizleyir
+                if (i > 0 && i % batchSize == 0) {
+                    entityManager.flush();
+                    entityManager.clear();
+                }
+            } catch (Exception e) {
+                log.error("Error updating balance for card {}: {}", card.getCardNumber(), e.getMessage());
             }
         }
         entityManager.flush();
@@ -262,6 +274,19 @@ public class CardServiceImpl implements CardService {
             return "****" + cardNumber;
         }
         return "****";
+    }
+
+    private PageableCardResponse mapToPageableCardResponse(org.springframework.data.domain.Page<CardEntity> cardPage) {
+        return PageableCardResponse.builder()
+                .cardList(cardPage.getContent().stream()
+                        .map(CardMapper::buildCardResponse)
+                        .toList())
+                .pageNumber(cardPage.getNumber())
+                .pageSize(cardPage.getSize())
+                .totalElements(cardPage.getTotalElements())
+                .lastPageNumber(cardPage.getTotalPages())
+                .hasNextPage(cardPage.hasNext())
+                .build();
     }
 }
 

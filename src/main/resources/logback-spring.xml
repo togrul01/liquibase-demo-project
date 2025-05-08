@@ -1,22 +1,151 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
 
-    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+    <property name="LOGS" value="./logs" />
+    <property name="LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n" />
 
-    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
-        <encoder class="net.logstash.logback.encoder.LogstashEncoder">
-            <fieldNames>
-                <timestamp>timestamp</timestamp>
-                <level>level</level>
-                <logger>logger</logger>
-                <thread>thread</thread>
-                <message>message</message>
-            </fieldNames>
+    <!-- Console Appender with JSON Format -->
+    <appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+            <providers>
+                <timestamp>
+                    <timeZone>UTC</timeZone>
+                </timestamp>
+                <pattern>
+                    <pattern>
+                        {
+                        "timestamp": "%date{yyyy-MM-dd'T'HH:mm:ss.SSSZ}",
+                        "severity": "%level",
+                        "thread": "%thread",
+                        "logger": "%logger{36}",
+                        "message": "%message",
+                        "class": "%class",
+                        "methodName": "%method",
+                        "lineNumber": "%line",
+                        "stackTrace": "%exception{10}"
+                        }
+                    </pattern>
+                </pattern>
+                <logLevel />
+                <threadName />
+                <loggerName />
+                <mdc />
+                <arguments />
+                <stackTrace />
+            </providers>
         </encoder>
     </appender>
 
+    <!-- File Appender with JSON Format -->
+    <appender name="RollingFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOGS}/spring-boot-logger.log</file>
+        <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+            <providers>
+                <timestamp>
+                    <timeZone>UTC</timeZone>
+                </timestamp>
+                <pattern>
+                    <pattern>
+                        {
+                        "timestamp": "%date{yyyy-MM-dd'T'HH:mm:ss.SSSZ}",
+                        "severity": "%level",
+                        "thread": "%thread",
+                        "logger": "%logger{36}",
+                        "message": "%message",
+                        "class": "%class",
+                        "methodName": "%method",
+                        "lineNumber": "%line",
+                        "stackTrace": "%exception{10}"
+                        }
+                    </pattern>
+                </pattern>
+                <logLevel />
+                <threadName />
+                <loggerName />
+                <mdc />
+                <arguments />
+                <stackTrace />
+            </providers>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOGS}/archived/spring-boot-logger-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>10MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+    </appender>
+
+    <!-- Logstash Appender with Enhanced Configuration -->
+    <appender name="LOGSTASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+        <destination>localhost:5000</destination>
+        <reconnectionDelay>5 seconds</reconnectionDelay>
+        <connectionTimeout>15 seconds</connectionTimeout>
+        <keepAliveDuration>5 minutes</keepAliveDuration>
+        <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+            <providers>
+                <timestamp>
+                    <timeZone>UTC</timeZone>
+                </timestamp>
+                <pattern>
+                    <pattern>
+                        {
+                        "timestamp": "%date{yyyy-MM-dd'T'HH:mm:ss.SSSZ}",
+                        "application": "spring-liquibase",
+                        "host": "${HOSTNAME:-unknown}",
+                        "severity": "%level",
+                        "thread": "%thread",
+                        "logger": "%logger{36}",
+                        "message": "%message"
+                        }
+                    </pattern>
+                </pattern>
+                <logLevel />
+                <threadName />
+                <loggerName />
+                <mdc />
+                <arguments />
+                <stackTrace/>
+                <logstashMarkers/>
+                <rootStackTraceElement />
+                <callerData />
+                <throwableProxy />
+            </providers>
+        </encoder>
+    </appender>
+
+    <!-- Root Logger -->
     <root level="INFO">
-        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="Console" />
+        <appender-ref ref="RollingFile" />
+        <appender-ref ref="LOGSTASH" />
     </root>
 
+    <!-- Application Logger -->
+    <logger name="org.company" level="DEBUG" additivity="false">
+        <appender-ref ref="Console" />
+        <appender-ref ref="RollingFile" />
+        <appender-ref ref="LOGSTASH" />
+    </logger>
+
+    <!-- Spring Framework Logger -->
+    <logger name="org.springframework" level="INFO" additivity="false">
+        <appender-ref ref="Console" />
+        <appender-ref ref="RollingFile" />
+        <appender-ref ref="LOGSTASH" />
+    </logger>
+
+    <!-- Hibernate Logger -->
+    <logger name="org.hibernate" level="INFO" additivity="false">
+        <appender-ref ref="Console" />
+        <appender-ref ref="RollingFile" />
+        <appender-ref ref="LOGSTASH" />
+    </logger>
+
+    <!-- Liquibase Logger -->
+    <logger name="liquibase" level="INFO" additivity="false">
+        <appender-ref ref="Console" />
+        <appender-ref ref="RollingFile" />
+        <appender-ref ref="LOGSTASH" />
+    </logger>
 </configuration>

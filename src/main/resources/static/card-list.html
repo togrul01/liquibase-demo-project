@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card Management System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #34495e;
+            --accent-color: #3498db;
+            --success-color: #2ecc71;
+            --background-color: #f5f6fa;
+            --card-bg: #ffffff;
+            --text-color: #2c3e50;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .page-title {
+            text-align: center;
+            color: var(--primary-color);
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+            font-weight: 600;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px 0;
+        }
+
+        .card-item {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-color), var(--success-color));
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .card-type {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .card-brand {
+            font-size: 1.1rem;
+            color: var(--accent-color);
+        }
+
+        .card-number {
+            font-family: 'Courier New', monospace;
+            font-size: 1.1rem;
+            color: var(--secondary-color);
+            margin: 10px 0;
+            letter-spacing: 1px;
+        }
+
+        .card-details {
+            margin-top: 15px;
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: center;
+            margin: 8px 0;
+            color: var(--secondary-color);
+        }
+
+        .detail-item i {
+            width: 20px;
+            margin-right: 10px;
+            color: var(--accent-color);
+        }
+
+        .balance {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--success-color);
+            margin-top: 15px;
+            text-align: right;
+        }
+
+        .status-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .status-active {
+            background-color: var(--success-color);
+            color: white;
+        }
+
+        .status-inactive {
+            background-color: #e74c3c;
+            color: white;
+        }
+
+        .no-cards {
+            text-align: center;
+            padding: 40px;
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+        }
+
+        .refresh-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--accent-color);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .refresh-button:hover {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="page-title">Card Management System</h1>
+        
+        <div class="card-grid" id="cardGrid">
+            <div th:each="card : ${cards}" class="card-item">
+                <div class="status-badge" th:classappend="${card.status == 'ACTIVE' ? 'status-active' : 'status-inactive'}"
+                     th:text="${card.status}"></div>
+                
+                <div class="card-header">
+                    <span class="card-type" th:text="${card.cardType}"></span>
+                    <span class="card-brand" th:text="${card.cardBrand}"></span>
+                </div>
+                
+                <div class="card-number" th:text="${card.cardNumber}"></div>
+                
+                <div class="card-details">
+                    <div class="detail-item">
+                        <i class="fas fa-user"></i>
+                        <span th:text="${card.cardholderName}"></span>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-calendar"></i>
+                        <span th:text="${card.expiryDate}"></span>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span th:text="${card.issueDate}"></span>
+                    </div>
+                </div>
+                
+                <div class="balance">
+                    <i class="fas fa-dollar-sign"></i>
+                    <span th:text="${card.balance}"></span>
+                </div>
+            </div>
+        </div>
+
+        <div th:if="${#lists.isEmpty(cards)}" class="no-cards">
+            <i class="fas fa-credit-card fa-3x mb-3"></i>
+            <p>No cards found in the system.</p>
+        </div>
+    </div>
+
+    <div class="refresh-button" onclick="refreshCards()">
+        <i class="fas fa-sync-alt fa-lg"></i>
+    </div>
+
+    <script>
+        function refreshCards() {
+            window.location.reload();
+        }
+    </script>
+</body>
+</html> 

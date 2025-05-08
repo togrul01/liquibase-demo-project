@@ -36,6 +36,7 @@ public class CardEntity {
 
     private LocalDate issueDate;
 
+    @Column(precision = 15, scale = 2)
     private BigDecimal balance;
 
     @CreationTimestamp

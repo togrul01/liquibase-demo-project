@@ -22,8 +22,6 @@ public class CardSpecification implements Specification<CardEntity>, Serializabl
 
     private transient CardCriteria cardCriteria;
 
-
-
     @Override
     public Predicate toPredicate(@Nullable Root<CardEntity> root, @Nullable CriteriaQuery<?> query,
                                  @Nullable CriteriaBuilder cb) {
@@ -32,17 +30,16 @@ public class CardSpecification implements Specification<CardEntity>, Serializabl
         }
 
         var predicates = CardPredicateUtil.builder()
-                .addNullSafety(cardCriteria.getCardName(),
-                        cardName -> cb.equal(root.get(CARD_NAME.getStringValue()), cardName))
+                .addNullSafety(cardCriteria.getCardholderName(),
+                        cardholderName -> cb.like(root.get("cardholderName"), "%" + cardholderName + "%"))
                 .addNullSafety(cardCriteria.getCardNumber(),
-                        cardNumber -> cb.like(root.get(CARD_NUMBER.getStringValue()), "%" + cardNumber + "%"))
-                .addNullSafety(cardCriteria.getExpirationDateFrom(),
-                        expirationDateFrom -> cb.greaterThanOrEqualTo(root.get
-                                        (String.valueOf(EXPIRATION_DATE_FROM)),
-                                expirationDateFrom))
-                .addNullSafety(cardCriteria.getExpirationDateTo(),
-                        expirationDateTo -> cb.lessThanOrEqualTo(root.get
-                                (String.valueOf(EXPIRATION_DATE_TO)), expirationDateTo))
+                        cardNumber -> cb.like(root.get("cardNumber"), "%" + cardNumber + "%"))
+                .addNullSafety(cardCriteria.getCardType(),
+                        cardType -> cb.equal(root.get("cardType"), cardType))
+                .addNullSafety(cardCriteria.getCardBrand(),
+                        cardBrand -> cb.equal(root.get("cardBrand"), cardBrand))
+                .addNullSafety(cardCriteria.getStatus(),
+                        status -> cb.equal(root.get("status"), status))
                 .build();
 
         return cb.and(predicates);
