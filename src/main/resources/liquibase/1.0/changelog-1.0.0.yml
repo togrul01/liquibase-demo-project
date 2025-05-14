@@ -39,7 +39,10 @@ databaseChangeLog:
                   remarks: Update date of the user
                   constraints:
                     nullable: false
-            remarks: Table to store  information about users
+            remarks: Table to store information about users
+      rollback:
+        - dropTable:
+            tableName: users
 
 
 

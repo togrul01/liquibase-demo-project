@@ -20,7 +20,11 @@ import org.company.springliquibase.model.response.PageableCardResponse;
 import org.company.springliquibase.specification.CardSpecification;
 import org.company.springliquibase.util.LoggingUtil;
 import org.company.springliquibase.util.ValidationUtils;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
@@ -37,6 +41,7 @@ import static org.company.springliquibase.enums.CardStatus.*;
 import static org.company.springliquibase.mapper.CardMapper.*;
 import static org.company.springliquibase.util.LocalizationUtil.getLocalizedMessageByKey;
 import static org.company.springliquibase.util.ValidationUtils.calculateExpiryDate;
+
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -60,7 +65,8 @@ public class CardServiceImpl implements CardService {
         try {
             // əvvəlki logları Logging Aspect idarə edəcək
             if (!StringUtils.hasText(request.getCardNumber())) {
-                request.setCardNumber(ValidationUtils.generateValidCardNumber(CardBrand.valueOf(request.getCardBrand())));
+                request.setCardNumber(ValidationUtils.
+                        generateValidCardNumber(CardBrand.valueOf(request.getCardBrand())));
             }
 
             request.setCvv(generateRandomCvv());
@@ -80,7 +86,8 @@ public class CardServiceImpl implements CardService {
             CardEntity savedCard = cardRepository.save(card); // Save and keep reference
             CardResponse cardResponse = buildCardResponse(savedCard); // Hazır cavab yarat
 
-            HttpServletRequest currentRequest = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
+            HttpServletRequest currentRequest = ((ServletRequestAttributes) RequestContextHolder.
+                    currentRequestAttributes()).getRequest();
             currentRequest.setAttribute("cardResponse", cardResponse);
 
 
@@ -134,6 +141,35 @@ public class CardServiceImpl implements CardService {
         return mapToPageableCardResponse(cardPage);
     }
 
+    @Override
+    @Loggable(action = "findAll")
+    public PageableCardResponse findAll(String name, int page, int size) {
+        log.info("ActionLog.findAll.start with name: {}", name);
+        try {
+            Specification<CardEntity> spec = Specification.where(CardSpecification.active());
+            
+            if (StringUtils.hasText(name)) {
+                spec = spec.and((root, query, cb) ->
+                        cb.like(cb.lower(root.get("cardholderName")), "%" + name.toLowerCase() + "%"));
+            }
+
+            Pageable pageable = PageRequest.of(page, size, Sort.by("id").descending());
+            Page<CardEntity> cardPage = cardRepository.findAll(spec, pageable);
+
+            PageableCardResponse response = new PageableCardResponse();
+            response.setTotalElements(cardPage.getTotalElements());
+            response.setHasNextPage(cardPage.hasNext());
+            response.setLastPageNumber(cardPage.getTotalPages());
+            response.setCardList(cardPage.getContent().stream().map(CardMapper::buildCardResponse).toList());
+
+            log.info("ActionLog.findAll.success with cardholderName: {}", name);
+            return response;
+        } catch (Exception e) {
+            log.error("Error occurred while finding cards: {}", e.getMessage(), e);
+            throw new RuntimeException("Error occurred while finding cards", e);
+        }
+    }
+
     private CardEntity fetchCardIfExist(String cardNumber) {
         return cardRepository.findByCardNumber(cardNumber).orElseThrow(() -> {
             log.error("ActionLog.fetchCardIfExist.start with card number: {} not found", maskCardNumber(cardNumber)); // Masked here
@@ -141,18 +177,6 @@ public class CardServiceImpl implements CardService {
             return new CardNotFoundException(message);
         });
     }
-
-
-    @Override
-    @Loggable(action = "getAllCards")
-    public List<CardResponse> getCards() {
-        log.info("ActionLog.getCards.start fetching all cards");
-        List<CardEntity> cards = cardRepository.findAllByStatusNot(CardStatus.DELETED);
-        return cards.stream()
-                .map(CardMapper::buildCardResponse)
-                .toList();
-    }
-
 
     @Override
     @Loggable(action = "deleteCard")

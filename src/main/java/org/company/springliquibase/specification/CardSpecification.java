@@ -22,6 +22,10 @@ public class CardSpecification implements Specification<CardEntity>, Serializabl
 
     private transient CardCriteria cardCriteria;
 
+    public static Specification<CardEntity> active() {
+        return (root, query, cb) -> cb.equal(root.get("status"), "ACTIVE");
+    }
+
     @Override
     public Predicate toPredicate(@Nullable Root<CardEntity> root, @Nullable CriteriaQuery<?> query,
                                  @Nullable CriteriaBuilder cb) {

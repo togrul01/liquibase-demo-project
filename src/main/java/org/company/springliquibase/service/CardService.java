@@ -6,8 +6,6 @@ import org.company.springliquibase.model.request.CardRequest;
 import org.company.springliquibase.model.response.CardResponse;
 import org.company.springliquibase.model.response.PageableCardResponse;
 
-import java.util.List;
-
 public interface CardService {
 
     CardResponse createCard(CardRequest request);
@@ -15,8 +13,6 @@ public interface CardService {
     CardResponse getCard(Long cardId);
 
     CardResponse getCard(String cardNumber);
-
-    List<CardResponse> getCards();
 
     PageableCardResponse getCards(PageCriteria pageCriteria, CardCriteria cardCriteria);
 
@@ -27,5 +23,7 @@ public interface CardService {
     void increaseCardBalances();
 
     void increaseCardBalancesWithJpa();
+
+    PageableCardResponse findAll(String name, int page, int size);
 
 }

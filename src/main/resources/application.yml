@@ -6,6 +6,9 @@ spring:
     url: jdbc:postgresql://localhost:5432/liquibase
     username: postgres
     password: 123456
+    hikari:
+      connection-timeout: 20000
+      maximum-pool-size: 5
   jpa:
     properties:
       hibernate:
@@ -13,9 +16,24 @@ spring:
           use_jdbc_metadata_defaults: false
     database-platform: org.hibernate.dialect.PostgreSQLDialect
   liquibase:
-    change-log: classpath:liquibase/changelog-master.yml
+    enabled: false
   web:
     resources:
       static-locations: classpath:/static/
   mvc:
     static-path-pattern: /**
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus,metrics
+  endpoint:
+    health:
+      show-details: always
+    prometheus:
+      enabled: true
+  prometheus:
+    metrics:
+      export:
+        enabled: true
