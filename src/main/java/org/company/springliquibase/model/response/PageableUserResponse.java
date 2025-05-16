@@ -1,18 +1,21 @@
 package org.company.springliquibase.model.response;
 
-import lombok.*;
-import lombok.experimental.FieldDefaults;
+import lombok.Data;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
 import java.util.List;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Builder
-@FieldDefaults(level = AccessLevel.PRIVATE)
+@NoArgsConstructor
+@AllArgsConstructor
 public class PageableUserResponse {
-    List<UserResponse> userResponses;
-    int lastPageNumber;
-    long totalElements;
-    boolean hasNextPage;
+    private List<UserResponse> userList;
+    private int pageNumber;
+    private int pageSize;
+    private long totalElements;
+    private int lastPageNumber;
+    private boolean hasNextPage;
 }

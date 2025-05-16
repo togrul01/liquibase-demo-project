@@ -7,7 +7,9 @@ import org.company.springliquibase.model.criteria.PageCriteria;
 import org.company.springliquibase.model.request.CardRequest;
 import org.company.springliquibase.model.response.CardResponse;
 import org.company.springliquibase.model.response.PageableCardResponse;
+import org.company.springliquibase.model.response.Response;
 import org.company.springliquibase.service.CardService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -79,7 +81,7 @@ public class CardViewController {
     @GetMapping("/v1/cards/{cardId}/edit")
     public String getCardEditView(@PathVariable Long cardId, Model model) {
         try {
-            CardResponse card = cardService.getCard(cardId);
+            ResponseEntity<Response<CardResponse>> card = cardService.getCard(cardId);
             model.addAttribute("card", card);
             return "card-edit";
         } catch (Exception e) {

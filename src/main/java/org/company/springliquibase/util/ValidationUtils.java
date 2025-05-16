@@ -7,14 +7,17 @@ import org.company.springliquibase.exception.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.security.SecureRandom;
+import java.util.regex.Pattern;
 
 import static org.company.springliquibase.util.LocalizationUtil.getLocalizedMessageByKey;
 
 public class ValidationUtils {
     private static final SecureRandom RANDOM = new SecureRandom();
     private static final String ERROR_BUNDLE = "i18n/error"; // Constant for the base string
+    private static final String EMAIL_PATTERN = "^[A-Za-z0-9+_.-]+@(.+)$";
 
     private ValidationUtils() {
+        throw new UnsupportedOperationException("This is a utility class and cannot be instantiated");
     }
 
     public static void validateNotEmpty(String value, String errorMessage) {
@@ -122,6 +125,12 @@ public class ValidationUtils {
         int maxDay = expiryDate.lengthOfMonth();
         int randomDay = RANDOM.nextInt(1, maxDay + 1);
         return expiryDate.withDayOfMonth(randomDay);
+    }
+
+    public static void validateEmail(String email, String message) {
+        if (email == null || !Pattern.matches(EMAIL_PATTERN, email)) {
+            throw new IllegalArgumentException(message);
+        }
     }
 }
 

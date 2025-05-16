@@ -10,4 +10,8 @@ import lombok.NoArgsConstructor;
 public class PageCriteria {
     private Integer page;
     private Integer count;
+
+    public int getSize() {
+        return count;
+    }
 }

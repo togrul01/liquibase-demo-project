@@ -7,6 +7,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.company.springliquibase.model.response.Response;
 import org.company.springliquibase.model.request.CardRequest;
 import org.company.springliquibase.model.response.CardResponse;
 import org.company.springliquibase.model.response.PageableCardResponse;
@@ -31,9 +32,8 @@ public class CardController {
     })
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<CardResponse> createCard(@RequestBody CardRequest cardRequest) {
-        CardResponse createdCard = cardService.createCard(cardRequest);
-        return new ResponseEntity<>(createdCard, HttpStatus.CREATED);
+    public ResponseEntity<Response<CardResponse>> createCard(@RequestBody CardRequest cardRequest) {
+        return cardService.createCard(cardRequest);
     }
 
     @Operation(summary = "Get card by ID", description = "Retrieves a card's details by its ID")
@@ -42,8 +42,18 @@ public class CardController {
             @ApiResponse(responseCode = "404", description = "Card not found")
     })
     @GetMapping("/{cardId}")
-    public CardResponse getCard(@Parameter(description = "ID of the card to retrieve") @PathVariable Long cardId) {
+    public ResponseEntity<Response<CardResponse>> getCard(@PathVariable Long cardId) {
         return cardService.getCard(cardId);
+    }
+
+    @Operation(summary = "Get card by card number", description = "Retrieves a card's details by its card number")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Card found"),
+            @ApiResponse(responseCode = "404", description = "Card not found")
+    })
+    @GetMapping("/number/{cardNumber}")
+    public ResponseEntity<Response<CardResponse>> getCardByNumber(@PathVariable String cardNumber) {
+        return cardService.getCard(cardNumber);
     }
 
     @Operation(summary = "Find cards", description = "Finds cards with optional filtering by cardholder name. " +
@@ -54,29 +64,20 @@ public class CardController {
             @ApiResponse(responseCode = "500", description = "Internal server error")
     })
     @GetMapping
-    public ResponseEntity<PageableCardResponse> findAll(
-            @Parameter(description = "Optional cardholder name to filter by")
-            @RequestParam(required = false) String name,
+    public ResponseEntity<Response<PageableCardResponse>> findAll(@RequestParam(required = false) String name,
             @Parameter(description = "Page number (0-based)") @RequestParam(defaultValue = "0") int page,
             @Parameter(description = "Number of items per page") @RequestParam(defaultValue = "10") int size) {
-        try {
-            PageableCardResponse response = cardService.findAll(name, page, size);
-            return ResponseEntity.ok(response);
-        } catch (Exception e) {
-            log.error("Error occurred while finding cards: {}", e.getMessage(), e);
-            return ResponseEntity.internalServerError().build();
-        }
+        return cardService.findAll(name, page, size);
     }
 
     @Operation(summary = "Delete a card", description = "Deletes a card by its ID")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "204", description = "Card deleted successfully"),
+            @ApiResponse(responseCode = "200", description = "Card deleted successfully"),
             @ApiResponse(responseCode = "404", description = "Card not found")
     })
     @DeleteMapping("/{cardId}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteCard(@Parameter(description = "ID of the card to delete") @PathVariable Long cardId) {
-        cardService.deleteCard(cardId);
+    public ResponseEntity<Response<String>> deleteCard(@PathVariable Long cardId) {
+        return cardService.deleteCard(cardId);
     }
 
     @Operation(summary = "Update a card", description = "Updates an existing card's details")
@@ -87,9 +88,7 @@ public class CardController {
     })
     @PutMapping("/{cardId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void updateCard(
-            @Parameter(description = "ID of the card to update") @PathVariable Long cardId,
-            @RequestBody CardRequest request) {
+    public void updateCard(@PathVariable Long cardId, @RequestBody CardRequest request) {
         cardService.updateCard(cardId, request);
     }
 }

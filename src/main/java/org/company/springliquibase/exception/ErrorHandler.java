@@ -13,7 +13,7 @@ import static org.springframework.http.HttpStatus.*;
 @RestControllerAdvice
 public class ErrorHandler {
     private static final String HANDLE_EXCEPTION_ERROR = "ActionLog.handleException.error";
-    private static final String ERROR_BUNDLE = "i18n/error"; // Constant for the base string
+    private static final String ERROR_BUNDLE = "i18n/error";
 
     @ExceptionHandler(Exception.class)
     @ResponseStatus(INTERNAL_SERVER_ERROR)
@@ -37,6 +37,13 @@ public class ErrorHandler {
         return ResponseEntity.status(NOT_FOUND).body(new ErrorResponse(message));
     }
 
+    @ExceptionHandler(CardCreationException.class)
+    public ResponseEntity<ErrorResponse> handleException(CardCreationException e) {
+        var message = getLocalizedMessageByKey(ERROR_BUNDLE, "card.creation.exception");
+        log.error(HANDLE_EXCEPTION_ERROR, e);
+        return ResponseEntity.status(BAD_REQUEST).body(new ErrorResponse(message));
+    }
+
     @ExceptionHandler(CardTypeValidationException.class)
     @ResponseStatus(BAD_REQUEST)
     public ResponseEntity<ErrorResponse> handleException(CardTypeValidationException e) {
@@ -58,7 +65,6 @@ public class ErrorHandler {
         log.error(HANDLE_EXCEPTION_ERROR, e);
         return ResponseEntity.status(BAD_REQUEST).body(new ErrorResponse(message));
     }
-
 
     @ExceptionHandler(CardholderNameValidationException.class)
     public ResponseEntity<ErrorResponse> handleException(CardholderNameValidationException e) {

@@ -16,13 +16,11 @@ import java.time.LocalDateTime;
 @Builder
 public class UserEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)  // Error: Generation cannot be resolved to a variable
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String userName;
-
     private Integer age;
-
     private String birthPlace;
 
     @CreationTimestamp

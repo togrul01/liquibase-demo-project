@@ -4,6 +4,9 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.company.springliquibase.constants.LogConstants;
+import org.company.springliquibase.model.response.Response;
+import org.company.springliquibase.enums.Result;
 import org.company.springliquibase.dao.CardRepository;
 import org.company.springliquibase.entity.CardEntity;
 import org.company.springliquibase.enums.CardBrand;
@@ -25,6 +28,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
@@ -54,16 +59,17 @@ public class CardServiceImpl implements CardService {
     private EntityManager entityManager;
 
     private final CardRepository cardRepository;
-    private final Random random = new Random(); //Creating a single Random object at class level
-    private static final String ERROR_BUNDLE = "i18n/error"; // Constant for the base string
+    private final Random random = new Random();
+    private static final String ERROR_BUNDLE = "i18n/error";
+    private static final String SUCCESS_BUNDLE = "i18n/success";
     private static final String CREATE_CARD_ACTION = "createCard";
+    private static final String CARD_NOT_FOUND_KEY = "card.not.found";
 
     @Override
-    @Loggable(action = "createCard") // Action ilə log yazın
+    @Loggable(action = "createCard")
     @Transactional
-    public CardResponse createCard(CardRequest request) {
+    public ResponseEntity<Response<CardResponse>> createCard(CardRequest request) {
         try {
-            // əvvəlki logları Logging Aspect idarə edəcək
             if (!StringUtils.hasText(request.getCardNumber())) {
                 request.setCardNumber(ValidationUtils.
                         generateValidCardNumber(CardBrand.valueOf(request.getCardBrand())));
@@ -75,61 +81,88 @@ public class CardServiceImpl implements CardService {
             request.setExpiryDate(calculateExpiryDate(CardType.valueOf(request.getCardType()), issueDate));
 
             if (request.getBalance().compareTo(BigDecimal.ZERO) < 0) {
-                String errorMessage = getLocalizedMessageByKey(ERROR_BUNDLE, "negative.balance.exception");
-                log.error("Negative balance provided: {}", request.getBalance());
+                String errorMessage = getLocalizedMessageByKey(ERROR_BUNDLE, "card.negative.balance");
+                log.error(LogConstants.Validation.NEGATIVE_BALANCE, request.getBalance());
                 throw new BalanceValidationException(errorMessage);
             }
 
             validateCardRequest(request);
 
             CardEntity card = buildCardEntity(request);
-            CardEntity savedCard = cardRepository.save(card); // Save and keep reference
-            CardResponse cardResponse = buildCardResponse(savedCard); // Hazır cavab yarat
+            CardEntity savedCard = cardRepository.save(card);
+            CardResponse cardResponse = buildCardResponse(savedCard);
 
             HttpServletRequest currentRequest = ((ServletRequestAttributes) RequestContextHolder.
                     currentRequestAttributes()).getRequest();
             currentRequest.setAttribute("cardResponse", cardResponse);
 
-
+            String successMessage = getLocalizedMessageByKey(SUCCESS_BUNDLE, "card.create.success");
+            log.info(successMessage);
             LoggingUtil.logApiResponse(CREATE_CARD_ACTION, cardResponse);
-            return cardResponse;
+
+            return ResponseEntity.status(HttpStatus.CREATED)
+                    .body(new Response<>(Result.CARD_CREATED.getCode(), successMessage, cardResponse));
 
         } catch (IllegalArgumentException e) {
-            String errorMessage = getLocalizedMessageByKey(ERROR_BUNDLE, "invalid.card.type.exception");
-            log.error("Invalid card type provided: {}", request.getCardType());
+            String errorMessage = getLocalizedMessageByKey(ERROR_BUNDLE, "card.invalid.type");
+            log.error(LogConstants.Validation.INVALID_CARD_TYPE, request.getCardType());
             throw new CardTypeValidationException(errorMessage);
         } catch (BalanceValidationException | CardTypeValidationException e) {
-            log.error("Validation failed: {}", e.getMessage());
+            log.error(LogConstants.Validation.VALIDATION_FAILED, e.getMessage());
             throw e;
         } catch (Exception e) {
-            String errorMessage = getLocalizedMessageByKey(ERROR_BUNDLE, "unexpected.error.exception");
-            log.error("Unexpected error occurred while creating card", e);
-            throw new RuntimeException(errorMessage);
+            String errorMessage = getLocalizedMessageByKey(ERROR_BUNDLE, "card.create.error");
+            log.error(LogConstants.Error.CREATING_CARD, e.getMessage());
+            throw new CardCreationException(errorMessage);
         }
     }
 
-
     @Override
     @Loggable(action = "getCardById")
-    public CardResponse getCard(Long cardId) {
-        log.info("ActionLog.getCard.start with id: {}", cardId);
-        CardEntity card = fetchCardIfExist(cardId);
-        CardResponse cardResponse = buildCardResponse(card);
-        LoggingUtil.logApiResponse(CREATE_CARD_ACTION, cardResponse);
+    public ResponseEntity<Response<CardResponse>> getCard(Long cardId) {
+        log.info(LogConstants.Action.GET_CARD_BY_ID_START, cardId);
+        try {
+            var card = getCardById(cardId);
+            var cardResponse = buildCardResponseForCard(card);
+            LoggingUtil.logApiResponse(CREATE_CARD_ACTION, cardResponse);
 
-        log.info("ActionLog.getCard.success with id: {}", cardId);
-        return cardResponse;
+            var successMessage = getLocalizedMessageByKey(SUCCESS_BUNDLE, "card.get.success");
+            log.info(successMessage);
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body(new Response<>(Result.CARD_FOUND.getCode(), successMessage, cardResponse));
+        } catch (CardNotFoundException e) {
+            var errorMessage = getLocalizedMessageByKey(ERROR_BUNDLE, CARD_NOT_FOUND_KEY);
+            log.error(LogConstants.Error.CARD_NOT_FOUND_WITH_ID, cardId);
+            throw new CardNotFoundException(errorMessage);
+        } catch (Exception e) {
+            var errorMessage = getLocalizedMessageByKey(ERROR_BUNDLE, "card.get.error");
+            log.error(LogConstants.Error.GETTING_CARD, e.getMessage());
+            throw new CardNotFoundException(errorMessage);
+        }
     }
 
     @Override
     @Loggable(action = "getCardByNumber")
-    public CardResponse getCard(String cardNumber) {
-        log.info("ActionLog.getCard.start with card number: {}", maskCardNumber(cardNumber)); // Masked here
-        CardEntity card = fetchCardIfExist(cardNumber);
-        CardResponse cardResponse = buildCardResponse(card);
-        LoggingUtil.logApiResponse(CREATE_CARD_ACTION, cardResponse);
-        log.info("ActionLog.getCard.success with card number: {}", cardResponse);  // Masked here
-        return buildCardResponse(card);
+    public ResponseEntity<Response<CardResponse>> getCard(String cardNumber) {
+        log.info(LogConstants.Action.GET_CARD_START, maskCardNumber(cardNumber));
+        try {
+            var card = fetchCardIfExist(cardNumber);
+            var cardResponse = buildCardResponse(card);
+            LoggingUtil.logApiResponse(CREATE_CARD_ACTION, cardResponse);
+
+            var successMessage = getLocalizedMessageByKey(SUCCESS_BUNDLE, "card.get.success");
+            log.info(successMessage);
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body(new Response<>(Result.CARD_FOUND.getCode(), successMessage, cardResponse));
+        } catch (CardNotFoundException e) {
+            var errorMessage = getLocalizedMessageByKey(ERROR_BUNDLE, CARD_NOT_FOUND_KEY);
+            log.error(LogConstants.Error.CARD_NOT_FOUND_WITH_NUMBER, maskCardNumber(cardNumber));
+            throw new CardNotFoundException(errorMessage);
+        } catch (Exception e) {
+            var errorMessage = getLocalizedMessageByKey(ERROR_BUNDLE, "card.get.error");
+            log.error(LogConstants.Error.GETTING_CARD, e.getMessage());
+            throw new CardNotFoundException(errorMessage);
+        }
     }
 
     public PageableCardResponse getCards(PageCriteria pageCriteria, CardCriteria cardCriteria) {
@@ -143,11 +176,11 @@ public class CardServiceImpl implements CardService {
 
     @Override
     @Loggable(action = "findAll")
-    public PageableCardResponse findAll(String name, int page, int size) {
+    public ResponseEntity<Response<PageableCardResponse>> findAll(String name, int page, int size) {
         log.info("ActionLog.findAll.start with name: {}", name);
         try {
             Specification<CardEntity> spec = Specification.where(CardSpecification.active());
-            
+
             if (StringUtils.hasText(name)) {
                 spec = spec.and((root, query, cb) ->
                         cb.like(cb.lower(root.get("cardholderName")), "%" + name.toLowerCase() + "%"));
@@ -162,59 +195,82 @@ public class CardServiceImpl implements CardService {
             response.setLastPageNumber(cardPage.getTotalPages());
             response.setCardList(cardPage.getContent().stream().map(CardMapper::buildCardResponse).toList());
 
-            log.info("ActionLog.findAll.success with cardholderName: {}", name);
-            return response;
-        } catch (Exception e) {
-            log.error("Error occurred while finding cards: {}", e.getMessage(), e);
-            throw new RuntimeException("Error occurred while finding cards", e);
-        }
-    }
+            String successMessage = getLocalizedMessageByKey(SUCCESS_BUNDLE, "card.find.all.success");
+            log.info(successMessage);
 
-    private CardEntity fetchCardIfExist(String cardNumber) {
-        return cardRepository.findByCardNumber(cardNumber).orElseThrow(() -> {
-            log.error("ActionLog.fetchCardIfExist.start with card number: {} not found", maskCardNumber(cardNumber)); // Masked here
-            var message = getLocalizedMessageByKey(ERROR_BUNDLE, "card.not.found.exception");
-            return new CardNotFoundException(message);
-        });
+            return ResponseEntity.ok(new Response<>(Result.CARD_FOUND.getCode(), successMessage, response));
+        } catch (Exception e) {
+            String errorMessage = getLocalizedMessageByKey(ERROR_BUNDLE, "card.find.all.error");
+            log.error(LogConstants.Error.FINDING_CARDS, e.getMessage(), e);
+            
+            // Create an empty PageableCardResponse for error case
+            PageableCardResponse errorResponse = new PageableCardResponse();
+            errorResponse.setTotalElements(0L);
+            errorResponse.setHasNextPage(false);
+            errorResponse.setLastPageNumber(0);
+            errorResponse.setCardList(List.of());
+            
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new Response<>(Result.ERROR.getCode(), errorMessage, errorResponse));
+        }
     }
 
     @Override
     @Loggable(action = "deleteCard")
-    public void deleteCard(Long cardId) {
-        log.info("ActionLog.deleteCard.start with id: {}", cardId);
-        CardEntity card = fetchCardIfExist(cardId);
-        card.setStatus(DELETED);
-        log.info("ActionLog.deleteCard.success with id: {}", cardId);
-        cardRepository.save(card);
+    public ResponseEntity<Response<String>> deleteCard(Long cardId) {
+        log.info(LogConstants.Action.DELETE_CARD_START, cardId);
+        try {
+            CardEntity card = fetchCardIfExist(cardId);
+            card.setStatus(DELETED);
+            cardRepository.save(card);
+
+            String successMessage = getLocalizedMessageByKey(SUCCESS_BUNDLE, "card.delete.success");
+            log.info(successMessage);
+            return ResponseEntity.ok(new Response<>(Result.CARD_DELETED.getCode(), successMessage, "Card deleted successfully"));
+        } catch (CardNotFoundException e) {
+            String errorMessage = getLocalizedMessageByKey(ERROR_BUNDLE, CARD_NOT_FOUND_KEY);
+            log.error(LogConstants.Error.CARD_NOT_FOUND_WITH_ID, cardId);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(new Response<>(Result.CARD_NOT_FOUND.getCode(), errorMessage, 
+                        "Card not found with id: " + cardId));
+        } catch (Exception e) {
+            String errorMessage = getLocalizedMessageByKey(ERROR_BUNDLE, "card.delete.error");
+            log.error(LogConstants.Error.DELETING_CARD, e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new Response<>(Result.CARD_DELETE_ERROR.getCode(), errorMessage,
+                        "Error deleting card: " + e.getMessage()));
+        }
     }
 
     @Override
     @Loggable(action = "updateCard")
     @Transactional
     public void updateCard(Long cardId, CardRequest request) {
-        log.info("ActionLog.updateCard.start with id: {}", cardId);
-        CardEntity card = fetchCardIfExist(cardId);
-        card.setStatus(IN_PROGRESS);
+        log.info(LogConstants.Action.UPDATE_CARD_START, cardId);
+        try {
+            CardEntity card = fetchCardIfExist(cardId);
+            card.setStatus(IN_PROGRESS);
 
-        Optional.ofNullable(request.getCardholderName()).ifPresent(card::setCardholderName);
-        Optional.ofNullable(request.getExpiryDate()).ifPresent(card::setExpiryDate);
-        Optional.ofNullable(request.getCvv()).ifPresent(card::setCvv);
-        Optional.ofNullable(request.getCardType()).ifPresent(card::setCardType);
-        Optional.ofNullable(request.getIssueDate()).ifPresent(card::setIssueDate);
-        Optional.ofNullable(request.getBalance()).ifPresent(card::setBalance);
+            Optional.ofNullable(request.getCardholderName()).ifPresent(card::setCardholderName);
+            Optional.ofNullable(request.getExpiryDate()).ifPresent(card::setExpiryDate);
+            Optional.ofNullable(request.getCvv()).ifPresent(card::setCvv);
+            Optional.ofNullable(request.getCardType()).ifPresent(card::setCardType);
+            Optional.ofNullable(request.getIssueDate()).ifPresent(card::setIssueDate);
+            Optional.ofNullable(request.getBalance()).ifPresent(card::setBalance);
 
-        cardRepository.save(card);
+            cardRepository.save(card);
 
-        log.info("ActionLog.updateCard.success with id: {}", cardId);
-    }
-
-    private CardEntity fetchCardIfExist(Long cardId) {
-        return cardRepository.findById(cardId).orElseThrow(() ->
-        {
-            log.error("ActionLog.fetchCardIfExist.start with id: {} not found", cardId);
-            return new CardNotFoundException(
-                    getLocalizedMessageByKey(ERROR_BUNDLE, "card.not.found.exception"));
-        });
+            String successMessage = getLocalizedMessageByKey(SUCCESS_BUNDLE, "card.update.success");
+            log.info(successMessage);
+        } catch (CardNotFoundException e) {
+            String errorMessage = getLocalizedMessageByKey(ERROR_BUNDLE, CARD_NOT_FOUND_KEY);
+            log.error(LogConstants.Error.CARD_NOT_FOUND_WITH_ID, cardId);
+            throw new CardNotFoundException(errorMessage);
+        } catch (Exception e) {
+            String errorMessage = getLocalizedMessageByKey(ERROR_BUNDLE, "card.update.error");
+            log.error(LogConstants.Error.UPDATING_CARD, e.getMessage());
+            throw new CardNotFoundException(errorMessage);
+        }
     }
 
     @Transactional
@@ -236,7 +292,7 @@ public class CardServiceImpl implements CardService {
             try {
                 BigDecimal newBalance = card.getBalance().multiply(new BigDecimal("1.05"));
                 if (newBalance.compareTo(new BigDecimal("9999999999999.99")) > 0) {
-                    log.warn("Balance would exceed maximum allowed value for card: {}", card.getCardNumber());
+                    log.warn(LogConstants.Balance.EXCEED_MAX, maskCardNumber(card.getCardNumber()));
                     continue;
                 }
                 card.setBalance(newBalance);
@@ -246,12 +302,11 @@ public class CardServiceImpl implements CardService {
                     entityManager.clear();
                 }
             } catch (Exception e) {
-                log.error("Error updating balance for card {}: {}", card.getCardNumber(), e.getMessage());
+                log.error(LogConstants.Error.UPDATING_BALANCE, maskCardNumber(card.getCardNumber()), e.getMessage());
             }
         }
         entityManager.flush();
     }
-
 
     private void validateCardRequest(CardRequest request) {
         ValidationUtils.validateNotEmpty(request.getCardNumber(),
@@ -291,6 +346,14 @@ public class CardServiceImpl implements CardService {
         return String.valueOf(cvv);
     }
 
+    private CardEntity getCardById(Long cardId) {
+        return fetchCardIfExist(cardId);
+    }
+
+    private CardResponse buildCardResponseForCard(CardEntity card) {
+        return buildCardResponse(card);
+    }
+
     private String maskCardNumber(String cardNumber) {
         if (cardNumber != null && cardNumber.length() > 8) {
             return "****" + cardNumber.substring(cardNumber.length() - 8);
@@ -311,6 +374,23 @@ public class CardServiceImpl implements CardService {
                 .lastPageNumber(cardPage.getTotalPages())
                 .hasNextPage(cardPage.hasNext())
                 .build();
+    }
+
+    private CardEntity fetchCardIfExist(String cardNumber) {
+        return cardRepository.findByCardNumber(cardNumber).orElseThrow(() -> {
+            log.error(LogConstants.Error.CARD_NOT_FOUND_WITH_NUMBER, maskCardNumber(cardNumber));
+            var message = getLocalizedMessageByKey(ERROR_BUNDLE, CARD_NOT_FOUND_KEY);
+            return new CardNotFoundException(message);
+        });
+    }
+
+    private CardEntity fetchCardIfExist(Long cardId) {
+        return cardRepository.findById(cardId).orElseThrow(() ->
+        {
+            log.error(LogConstants.Error.CARD_NOT_FOUND_WITH_ID, cardId);
+            return new CardNotFoundException(
+                    getLocalizedMessageByKey(ERROR_BUNDLE, CARD_NOT_FOUND_KEY));
+        });
     }
 }
 
