@@ -94,6 +94,14 @@ public class ErrorHandler {
         return ResponseEntity.status(CONFLICT).body(new ErrorResponse(message));
     }
 
+    @ExceptionHandler(DuplicateUsernameException.class)
+    @ResponseStatus(CONFLICT)
+    public ResponseEntity<ErrorResponse> handleDuplicateUsernameException(DuplicateUsernameException e) {
+        var message = getLocalizedMessageByKey(ERROR_BUNDLE, "duplicate.username.exception");
+        log.error(HANDLE_EXCEPTION_ERROR, e);
+        return ResponseEntity.status(CONFLICT).body(new ErrorResponse(message));
+    }
+
     @ExceptionHandler(UserAlreadyExistsException.class)
     public ResponseEntity<ErrorResponse> handleUserAlreadyExistsException(UserAlreadyExistsException ex) {
         var message = getLocalizedMessageByKey(ERROR_BUNDLE, "user.already.exist.exception");
