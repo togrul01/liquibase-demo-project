@@ -37,3 +37,12 @@ management:
     metrics:
       export:
         enabled: true
+
+logging:
+  level:
+    org.company.springliquibase: INFO
+  pattern:
+    console: "%d{HH:mm:ss.SSS} [%thread] [%X{traceId}] [%X{spanId}] [%X{parentId}] %-5level %logger{36} - %msg%n"
+    file: "%d{HH:mm:ss.SSS} [%thread] [%X{traceId}] [%X{spanId}] [%X{parentId}] %-5level %logger{36} - %msg%n"
+  file:
+    name: logs/spring-boot-logger.log

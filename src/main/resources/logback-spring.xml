@@ -3,9 +3,9 @@
     <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
 
     <property name="LOGS" value="./logs" />
-    <property name="LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n" />
+    <property name="LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] [%X{traceId}] [%X{spanId}] [%X{parentId}] %-5level %logger{36} - %msg%n" />
 
-    <!-- Console Appender with JSON Format -->
+    <!-- Mevcut appenders -->
     <appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
         <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
             <providers>
@@ -23,7 +23,10 @@
                         "class": "%class",
                         "methodName": "%method",
                         "lineNumber": "%line",
-                        "stackTrace": "%exception{10}"
+                        "stackTrace": "%exception{10}",
+                        "traceId": "%X{traceId}",
+                        "spanId": "%X{spanId}",
+                        "parentId": "%X{parentId}"
                         }
                     </pattern>
                 </pattern>
@@ -37,7 +40,6 @@
         </encoder>
     </appender>
 
-    <!-- File Appender with JSON Format -->
     <appender name="RollingFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${LOGS}/spring-boot-logger.log</file>
         <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
@@ -56,7 +58,10 @@
                         "class": "%class",
                         "methodName": "%method",
                         "lineNumber": "%line",
-                        "stackTrace": "%exception{10}"
+                        "stackTrace": "%exception{10}",
+                        "traceId": "%X{traceId}",
+                        "spanId": "%X{spanId}",
+                        "parentId": "%X{parentId}"
                         }
                     </pattern>
                 </pattern>
@@ -76,7 +81,6 @@
         </rollingPolicy>
     </appender>
 
-    <!-- Logstash Appender with Enhanced Configuration -->
     <appender name="LOGSTASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
         <destination>localhost:5000</destination>
         <reconnectionDelay>5 seconds</reconnectionDelay>
@@ -96,7 +100,10 @@
                         "severity": "%level",
                         "thread": "%thread",
                         "logger": "%logger{36}",
-                        "message": "%message"
+                        "message": "%message",
+                        "traceId": "%X{traceId}",
+                        "spanId": "%X{spanId}",
+                        "parentId": "%X{parentId}"
                         }
                     </pattern>
                 </pattern>
@@ -148,4 +155,5 @@
         <appender-ref ref="RollingFile" />
         <appender-ref ref="LOGSTASH" />
     </logger>
+
 </configuration>

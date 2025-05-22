@@ -10,6 +10,7 @@ public final class LogConstants {
         private Action() {
             throw new IllegalStateException("Constants class");
         }
+
         public static final String GET_CARD_START = "ActionLog.getCard.start with card number: {}";
         public static final String GET_CARD_END = "ActionLog.getCard.end with card number: {}";
         public static final String GET_CARD_BY_ID_START = "ActionLog.getCard.start with id: {}";
@@ -29,6 +30,7 @@ public final class LogConstants {
         private Error() {
             throw new IllegalStateException("Constants class");
         }
+
         public static final String CARD_NOT_FOUND_WITH_ID = "Card not found with id: {}";
         public static final String CARD_NOT_FOUND_WITH_NUMBER = "Card not found with number: {}";
         public static final String GETTING_CARD = "Error occurred while getting card: {}";
@@ -57,6 +59,7 @@ public final class LogConstants {
         private Validation() {
             throw new IllegalStateException("Constants class");
         }
+
         public static final String NEGATIVE_BALANCE = "Negative balance provided: {}";
         public static final String INVALID_CARD_TYPE = "Invalid card type provided: {}";
         public static final String VALIDATION_FAILED = "Validation failed: {}";
@@ -67,6 +70,9 @@ public final class LogConstants {
         private Balance() {
             throw new IllegalStateException("Constants class");
         }
+
         public static final String EXCEED_MAX = "Balance would exceed maximum allowed value for card: {}";
     }
-} 
+
+
+}

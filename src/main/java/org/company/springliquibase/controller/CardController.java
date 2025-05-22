@@ -80,15 +80,4 @@ public class CardController {
         return cardService.deleteCard(cardId);
     }
 
-    @Operation(summary = "Update a card", description = "Updates an existing card's details")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "204", description = "Card updated successfully"),
-            @ApiResponse(responseCode = "404", description = "Card not found"),
-            @ApiResponse(responseCode = "400", description = "Invalid input data")
-    })
-    @PutMapping("/{cardId}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void updateCard(@PathVariable Long cardId, @RequestBody CardRequest request) {
-        cardService.updateCard(cardId, request);
-    }
 }

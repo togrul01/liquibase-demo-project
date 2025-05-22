@@ -1,9 +1,11 @@
 package org.company.springliquibase.interceptor;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.company.springliquibase.model.response.CardResponse;
 import org.springframework.stereotype.Component;
@@ -11,10 +13,10 @@ import org.springframework.web.servlet.HandlerInterceptor;
 
 @Slf4j
 @Component
+@RequiredArgsConstructor
 public class LogInterceptor implements HandlerInterceptor {
 
-    private static final String MASKED_VALUE = "******";
-    private final ObjectMapper objectMapper = new ObjectMapper();
+    private final ObjectMapper objectMapper;
 
     @Override
     public boolean preHandle(HttpServletRequest request,
@@ -47,12 +49,14 @@ public class LogInterceptor implements HandlerInterceptor {
                     // Mask the card number before logging
                     String originalCardNumber = cardResponse.getCardNumber();
                     cardResponse.setCardNumber(maskSensitiveData(originalCardNumber));
-                    
-                    log.info("Card operation completed successfully", cardResponse);
 
+                    log.info("Card operation completed successfully: {}", cardResponse);
+
+                    // Configure ObjectMapper for pretty printing and proper date format
+                    objectMapper.configure(SerializationFeature.INDENT_OUTPUT, true);
                     String cardResponseJson = objectMapper.writeValueAsString(cardResponse);
                     log.info("Card Response JSON: {}", cardResponseJson);
-                    
+
                     // Restore original card number
                     cardResponse.setCardNumber(originalCardNumber);
                 } catch (Exception e) {
@@ -69,13 +73,9 @@ public class LogInterceptor implements HandlerInterceptor {
 
     private String maskSensitiveData(String value) {
         if (value != null && value.length() > 4) {
-            int visibleDigits = 4;
-            int maskedLength = value.length() - visibleDigits;
-            return "*".repeat(maskedLength) +
-                    value.substring(maskedLength);
-        } else if (value != null) {
-            return "****"; // Handle short card numbers
+            int length = value.length();
+            return "********" + value.substring(length - 4);
         }
-        return MASKED_VALUE;
+        return value;
     }
 }

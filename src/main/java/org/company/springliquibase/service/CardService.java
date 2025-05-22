@@ -20,8 +20,6 @@ public interface CardService {
 
     ResponseEntity<Response<String>> deleteCard(Long cardId);
 
-    void updateCard(Long cardId, CardRequest request);
-
     void increaseCardBalances();
 
     void increaseCardBalancesWithJpa();

@@ -3,7 +3,6 @@ user.not.found.exception=Пользователь не найден в базе 
 user.already.exist.exception=Пользователь уже существует в базе данных
 card.not.found.exception=Карта не найдена
 card.not.found=Карта не найдена
-card.creation.exception=Произошла ошибка при создании карты. Пожалуйста, попробуйте позже.
 client.error.exception=Ошибка на стороне клиента
 empty.card.number.exception=Номер карты не может быть пустым
 invalid.card.number.exception=Некорректный номер карты
