@@ -9,6 +9,18 @@ spring:
     hikari:
       connection-timeout: 20000
       maximum-pool-size: 5
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      properties:
+        compression.type: snappy
+    consumer:
+      group-id: logstash-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
   jpa:
     properties:
       hibernate:
